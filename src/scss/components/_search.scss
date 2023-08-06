@@ -1,0 +1,36 @@
+.search {
+  form {
+    display: flex;
+    div {
+      width: 50%;
+      margin: auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      svg {
+        position: absolute;
+        right: 0.5rem;
+      }
+      input {
+        width: 100%;
+        padding: 0.7rem;
+        border: 2px solid #eaeaea;
+        border-radius: 5px;
+        font-size: 1rem;
+        &:focus {
+          outline: 2px solid green;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .search {
+    form {
+      div {
+        width: 100%;
+      }
+    }
+  }
+}

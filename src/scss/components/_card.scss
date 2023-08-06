@@ -1,0 +1,39 @@
+.card-wrapper {
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 1rem;
+  .card {
+    border: 1px solid #eaeaea;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 1rem;
+    transition: 0.1s;
+    display: inline-block;
+    &:hover {
+      outline: 2px solid green;
+    }
+    .card-header {
+      padding: 0.5rem;
+    }
+    .card-body {
+      padding: 0.5rem;
+      text-align: right;
+      h3 {
+        padding-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 920px) {
+  .card-wrapper {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .card-wrapper {
+    grid-template-columns: auto;
+  }
+}
