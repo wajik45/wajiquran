@@ -1,5 +1,5 @@
 import { Wrapper, Container, Content } from "../layouts";
-import { Navbar, Header, Search, Card } from "../components";
+import { Navbar, Header, Search, Card, Loader, Error } from "../components";
 import { getAsmaulHusna } from "../services/getAsmaulHusna.service";
 import { useEffect, useState } from "react";
 
@@ -30,11 +30,11 @@ const AsmaulHusna = () => {
           <Header title="Asma'ul Husna" paragraph="japoy wwkkwk" />
           <Search next="Asma'ul Husna" />
           {loading ? (
-            <h1>LOADING!!</h1>
+            <Loader />
           ) : data != 0 ? (
             <Card data={data.asmaulHusna} />
           ) : (
-            error && <h1>ERROR</h1>
+            error && <Error error={error} />
           )}
         </Content>
       </Container>

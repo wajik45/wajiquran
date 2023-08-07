@@ -1,11 +1,9 @@
-import { Icons } from ".";
+import { IconSearch } from "./icons";
 
 const Search = ({ next }) => {
-  const { IconSearch } = Icons;
-
   return (
     <div className="search">
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <div>
           <input type="text" placeholder={`Cari ${next} ...`} />
           <IconSearch />

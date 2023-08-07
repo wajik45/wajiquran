@@ -1,12 +1,14 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container } from "../layouts";
-import { Icons } from ".";
+import {
+  IconBookQuran,
+  IconClock,
+  IconHome,
+  IconList,
+  IconMoon,
+} from "./icons";
 
 const Navbar = () => {
-  const { IconBookQuran, IconClock, IconHome, IconList, IconMoon } = Icons;
-  const location = useLocation();
-  const pathName = location.pathname;
-
   return (
     <div id="navbar">
       <Container>

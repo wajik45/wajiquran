@@ -1,5 +1,5 @@
 import { Wrapper, Container, Content } from "../layouts";
-import { Navbar, Header, Search, Card } from "../components";
+import { Navbar, Header, Search, Card, Loader, Error } from "../components";
 import { getSuratList } from "../services/getQuran.service";
 import { useEffect, useState } from "react";
 
@@ -30,11 +30,11 @@ const Quran = () => {
           <Header title="Al-Quran Al-Kariim" paragraph="japoy wwkkwk" />
           <Search next="Surat" />
           {loading ? (
-            <h1>LOADING</h1>
+            <Loader />
           ) : data != 0 ? (
             <Card data={data.data} />
           ) : (
-            error && <h1>ERROR {error.message}</h1>
+            error && <Error error={error} />
           )}
         </Content>
       </Container>

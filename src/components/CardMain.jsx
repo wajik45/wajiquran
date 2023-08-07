@@ -1,9 +1,14 @@
+import { useLocation, Link } from "react-router-dom";
+
 const Card = ({ data }) => {
+  const location = useLocation();
+  const pathName = location.pathname;
+
   return (
     <div className="card-wrapper">
       {data.map((item) => (
-        <a
-          href={`/quran/surat/${item.nomor}`}
+        <Link
+          to={pathName.includes("quran") ? `/quran/surat/${item.nomor}` : ""}
           key={item.nomor}
           className="card"
         >
@@ -18,7 +23,7 @@ const Card = ({ data }) => {
               {item.tempatTurun} {(item.tempatTurun && "|") || ""} {item.arti}
             </p>
           </div>
-        </a>
+        </Link>
       ))}
     </div>
   );

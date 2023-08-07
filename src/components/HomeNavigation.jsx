@@ -1,15 +1,17 @@
+import { Link } from "react-router-dom";
+
 const HomeNavigation = () => {
   return (
     <div className="home-navigation">
       <ul>
         <li>
-          <a href="/quran">Al-Qur'an</a>
+          <Link to="/quran">Al-Qur'an</Link>
         </li>
         <li>
-          <a href="/asmaul-husna">Asma'ul Husna</a>
+          <Link to="/asmaul-husna">Asma'ul Husna</Link>
         </li>
         <li>
-          <a href="/jadwal-shalat">Jadwal Shalat</a>
+          <Link to="/jadwal-shalat">Jadwal Shalat</Link>
         </li>
       </ul>
     </div>
