@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, AsmaulHusna, JadwalShalat, Quran } from "./pages";
+import { Home, AsmaulHusna, JadwalShalat, Quran, QuranSurat } from "./pages";
 import "./scss/index.scss";
 
 const router = createBrowserRouter([
@@ -12,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: "/quran",
     element: <Quran />,
+  },
+  {
+    path: "/quran/surat/:id",
+    element: <QuranSurat />,
   },
   {
     path: "/asmaul-husna",

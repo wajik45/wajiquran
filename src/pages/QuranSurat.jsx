@@ -3,14 +3,14 @@ import {
   Navbar,
   HeaderMain,
   Search,
-  CardKota,
+  CardMain,
   Loader,
   Error,
 } from "../components";
-import { useState, useEffect } from "react";
-import { getKota } from "../services/getJadwalShalat.service";
+import { getSuratById } from "../services/getQuran.service";
+import { useEffect, useState } from "react";
 
-const JadwalShalat = () => {
+const QuranSurat = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
@@ -19,9 +19,9 @@ const JadwalShalat = () => {
     (async () => {
       setLoading(true);
       try {
-        const result = await getKota();
+        const result = await getSuratById(1);
         setLoading(false);
-        setData(result.data);
+        setData(result.data.data);
       } catch (err) {
         setLoading(false);
         setError(err);
@@ -29,17 +29,22 @@ const JadwalShalat = () => {
     })();
   }, []);
 
+  console.log(data);
+
   return (
     <Wrapper>
       <Navbar />
       <Container>
         <Content>
-          <HeaderMain title="Jadwal Shalat" paragraph="japoy wwkkwk" />
-          <Search next="Kota / Kabupaten" />
           {loading ? (
             <Loader />
-          ) : data != 0 ? (
-            <CardKota data={data} />
+          ) : data ? (
+            <HeaderMain
+              title={`Surat ${data.namaLatin + " | " + data.nama}`}
+              paragraph={`${
+                data.tempatTurun + " | " + data.arti + " | " + data.jumlahAyat
+              } Ayat`}
+            />
           ) : (
             error && <Error error={error} />
           )}
@@ -49,4 +54,4 @@ const JadwalShalat = () => {
   );
 };
 
-export default JadwalShalat;
+export default QuranSurat;

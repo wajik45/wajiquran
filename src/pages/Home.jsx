@@ -1,5 +1,5 @@
 import { Wrapper, Container, Content } from "../layouts";
-import { Navbar, Header, HomeNavigation } from "../components";
+import { Navbar, HeaderMain, HomeNavigation } from "../components";
 
 const Home = () => {
   return (
@@ -7,7 +7,7 @@ const Home = () => {
       <Navbar />
       <Container>
         <Content fixed={true}>
-          <Header title="WajiQuran.id" paragraph="Create by Haikal" />
+          <HeaderMain title="WajiQuran.id" paragraph="Create by Haikal" />
           <HomeNavigation />
         </Content>
       </Container>

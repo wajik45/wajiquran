@@ -1,6 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 
-const Card = ({ data }) => {
+const CardMain = ({ data }) => {
   const location = useLocation();
   const pathName = location.pathname;
 
@@ -29,4 +29,4 @@ const Card = ({ data }) => {
   );
 };
 
-export default Card;
+export default CardMain;

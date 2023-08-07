@@ -1,5 +1,12 @@
 import { Wrapper, Container, Content } from "../layouts";
-import { Navbar, Header, Search, Card, Loader, Error } from "../components";
+import {
+  Navbar,
+  HeaderMain,
+  Search,
+  CardMain,
+  Loader,
+  Error,
+} from "../components";
 import { getAsmaulHusna } from "../services/getAsmaulHusna.service";
 import { useEffect, useState } from "react";
 
@@ -27,12 +34,12 @@ const AsmaulHusna = () => {
       <Navbar />
       <Container>
         <Content>
-          <Header title="Asma'ul Husna" paragraph="japoy wwkkwk" />
+          <HeaderMain title="Asma'ul Husna" paragraph="japoy wwkkwk" />
           <Search next="Asma'ul Husna" />
           {loading ? (
             <Loader />
           ) : data != 0 ? (
-            <Card data={data.asmaulHusna} />
+            <CardMain data={data.asmaulHusna} />
           ) : (
             error && <Error error={error} />
           )}

@@ -1,4 +1,4 @@
-const Header = ({ title, paragraph }) => {
+const HeaderMain = ({ title, paragraph }) => {
   return (
     <div className="header">
       <h1>{title}</h1>
@@ -7,4 +7,4 @@ const Header = ({ title, paragraph }) => {
   );
 };
 
-export default Header;
+export default HeaderMain;
