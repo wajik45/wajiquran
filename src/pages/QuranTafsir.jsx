@@ -6,6 +6,7 @@ import {
   CardTafsir,
   Loader,
   Error,
+  ToTop,
 } from "../components";
 import { getTafsirById } from "../services/getQuran.service";
 import { useEffect, useState } from "react";
@@ -53,6 +54,7 @@ const QuranTafsir = () => {
           ) : (
             error && <Error error={error} />
           )}
+          <ToTop />
         </Content>
       </Container>
     </Wrapper>

@@ -6,6 +6,7 @@ import {
   Loader,
   Error,
   CardAyat,
+  ToTop,
 } from "../components";
 import { getSuratById } from "../services/getQuran.service";
 import { useEffect, useState } from "react";
@@ -52,6 +53,7 @@ const QuranSurat = () => {
           ) : (
             error && <Error error={error} />
           )}
+          <ToTop />
         </Content>
       </Container>
     </Wrapper>

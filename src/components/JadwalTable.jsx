@@ -16,6 +16,7 @@ const JadwalTable = ({ data, date }) => {
           </tr>
           {data.map((item) => (
             <tr
+              key={item.tanggal}
               className={
                 item.tanggal.slice(item.tanggal.length - 10).split("/")[0] ==
                 `0${date}`.slice(-2)

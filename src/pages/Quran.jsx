@@ -6,6 +6,7 @@ import {
   CardDaftarSurat,
   Loader,
   Error,
+  ToTop,
 } from "../components";
 import { getSuratList } from "../services/getQuran.service";
 import { useEffect, useState } from "react";
@@ -35,7 +36,10 @@ const Quran = () => {
       <Navbar />
       <Container>
         <Content>
-          <HeaderMain title="Al-Qur'an Al-Kariim" paragraph="japoy wwkkwk" />
+          <HeaderMain
+            title="Al-Qur'an Al-Kariim"
+            paragraph="Baca Al-Qur'an Terjemah & Latin"
+          />
           <Search next="Surat" setSearch={setSearch} />
           {loading ? (
             <Loader />
@@ -44,6 +48,7 @@ const Quran = () => {
           ) : (
             error && <Error error={error} />
           )}
+          <ToTop />
         </Content>
       </Container>
     </Wrapper>

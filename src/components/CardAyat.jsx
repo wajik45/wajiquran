@@ -12,7 +12,7 @@ const CardAyat = ({ data }) => {
               <b>{item.teksLatin}</b>
             </p>
             <div className="line"></div>
-            <p>{item.teksIndonesia}</p>
+            <p className="lh-md">{item.teksIndonesia}</p>
           </div>
         </div>
       ))}

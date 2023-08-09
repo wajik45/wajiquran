@@ -6,6 +6,7 @@ import {
   CardAsmaulHusna,
   Loader,
   Error,
+  ToTop,
 } from "../components";
 import { getAsmaulHusna } from "../services/getAsmaulHusna.service";
 import { useEffect, useState } from "react";
@@ -35,7 +36,10 @@ const AsmaulHusna = () => {
       <Navbar />
       <Container>
         <Content>
-          <HeaderMain title="Asma'ul Husna" paragraph="japoy wwkkwk" />
+          <HeaderMain
+            title="Asma'ul Husna"
+            paragraph="Nama-nama Allah SWT yang baik"
+          />
           <Search next="Asma'ul Husna" setSearch={setSearch} />
           {loading ? (
             <Loader />
@@ -44,6 +48,7 @@ const AsmaulHusna = () => {
           ) : (
             error && <Error error={error} />
           )}
+          <ToTop />
         </Content>
       </Container>
     </Wrapper>

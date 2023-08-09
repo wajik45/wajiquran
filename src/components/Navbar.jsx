@@ -13,16 +13,16 @@ const Navbar = () => {
 
   const conditionalClassHome = () => {
     if (location.pathname === "/") {
-      return "active";
+      return "icon active";
     }
-    return "";
+    return "icon";
   };
 
   const conditionalClass = (pathName) => {
     if (location.pathname.includes(pathName)) {
-      return "active";
+      return "icon active";
     }
-    return "";
+    return "icon";
   };
 
   return (
@@ -55,7 +55,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <IconMoon />
+              <IconMoon className="icon" />
             </li>
           </ul>
         </nav>

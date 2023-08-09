@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
+import { IconBxsLeftArrowAlt } from "./icons";
 
 const HeaderTafsir = ({ data }) => {
   const { id } = useParams();
-  console.log(data);
 
   const handleChangeAyat = (e) => {
     const element = document.getElementById(e.target.value);
@@ -16,11 +16,16 @@ const HeaderTafsir = ({ data }) => {
 
   return (
     <div className="header-quran">
-      <Link to={`/quran/surat/${id}`}>Surat</Link>
+      <Link to={`/quran/surat/${id}`}>
+        <IconBxsLeftArrowAlt />
+        <span>Surat</span>
+      </Link>
       <select onChange={handleChangeAyat}>
         <option value="">Pilih Ayat</option>
         {data.tafsir.map((item) => (
-          <option value={item.ayat}>{item.ayat}</option>
+          <option key={item.ayat} value={item.ayat}>
+            {item.ayat}
+          </option>
         ))}
       </select>
     </div>

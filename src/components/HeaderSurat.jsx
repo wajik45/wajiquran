@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import {
+  IconBxsLeftArrowAlt,
+  IconList,
+  IconPlayFill,
+  IconPauseFill,
+} from "./icons";
 
 const HeaderSurat = ({ data }) => {
   const { id } = useParams();
   const [play, setPlay] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const audio = new Audio("");
-
-  const location = useLocation();
 
   const handleClickPlay = (e) => {
     e.preventDefault();
@@ -49,10 +54,26 @@ const HeaderSurat = ({ data }) => {
         </select>
       </div>
       <div className="header-quran">
-        <Link to="/quran">Daftar</Link>
-        <Link to={`/quran/tafsir/${id}`}>Tafsir</Link>
+        <Link to="/quran">
+          <IconBxsLeftArrowAlt />
+          <span>Daftar</span>
+        </Link>
+        <Link to={`/quran/tafsir/${id}`}>
+          <IconList />
+          <span>Tafsir</span>
+        </Link>
         <Link to="" onClick={handleClickPlay}>
-          Play
+          {play ? (
+            <>
+              <IconPauseFill />
+              <span>Pause</span>
+            </>
+          ) : (
+            <>
+              <IconPlayFill />
+              <span>Play</span>
+            </>
+          )}
         </Link>
       </div>
     </>

@@ -11,7 +11,7 @@ const Search = ({ next, setSearch }) => {
             name="search"
             placeholder={`Cari ${next} ...`}
           />
-          <IconSearch />
+          <IconSearch className="icon" />
         </div>
       </form>
     </div>

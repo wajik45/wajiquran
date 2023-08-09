@@ -44,7 +44,7 @@
   flex-direction: column;
   gap: 1rem;
   .card-quran {
-    padding: 0.5rem;
+    padding: 1rem;
     border-radius: 5px;
     border: 1px solid #eaeaea;
     .card-quran-header {
@@ -55,13 +55,11 @@
     .card-quran-body {
       h1 {
         text-align: right;
-        padding: 1rem 0;
-      }
-      p {
-        padding: 1rem 0;
+        padding: 2rem 0;
       }
       .line {
         border-top: 2px solid #eaeaea;
+        margin: 1rem 0;
       }
     }
   }

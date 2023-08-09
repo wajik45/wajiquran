@@ -14,3 +14,13 @@
     }
   }
 }
+
+@media (max-width: 360px) {
+  .home-navigation {
+    a {
+      width: 130px;
+      padding: 0.7rem;
+      margin: 0.7rem;
+    }
+  }
+}

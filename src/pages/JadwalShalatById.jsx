@@ -1,5 +1,12 @@
 import { Wrapper, Container, Content } from "../layouts";
-import { Navbar, HeaderMain, JadwalTable, Loader, Error } from "../components";
+import {
+  Navbar,
+  HeaderMain,
+  JadwalTable,
+  Loader,
+  Error,
+  ToTop,
+} from "../components";
 import { useState, useEffect } from "react";
 import { getJadwalShalat } from "../services/getJadwalShalat.service";
 import { getDayName, getMonthName } from "../utils";
@@ -52,6 +59,7 @@ const JadwalShalatById = () => {
           ) : (
             error && <Error error={error} />
           )}
+          <ToTop />
         </Content>
       </Container>
     </Wrapper>

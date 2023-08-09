@@ -1,0 +1,26 @@
+.to-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  transform: translateX(200%);
+  opacity: 0;
+  transition: 0.3s;
+  svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 3px solid #eaeaea;
+    background-color: #333;
+    border-radius: 50%;
+  }
+}
+.to-top.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .to-top {
+    bottom: calc(70px + 1rem);
+  }
+}

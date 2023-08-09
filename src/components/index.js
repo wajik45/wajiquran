@@ -12,6 +12,7 @@ import JadwalTable from "./JadwalTable";
 import HomeNavigation from "./HomeNavigation";
 import Loader from "./Loader";
 import Error from "./Error";
+import ToTop from "./ToTop";
 
 export {
   Navbar,
@@ -28,4 +29,5 @@ export {
   HomeNavigation,
   Loader,
   Error,
+  ToTop,
 };
