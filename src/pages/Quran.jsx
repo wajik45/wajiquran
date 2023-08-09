@@ -3,7 +3,7 @@ import {
   Navbar,
   HeaderMain,
   Search,
-  CardMain,
+  CardDaftarSurat,
   Loader,
   Error,
 } from "../components";
@@ -14,6 +14,7 @@ const Quran = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -35,11 +36,11 @@ const Quran = () => {
       <Container>
         <Content>
           <HeaderMain title="Al-Qur'an Al-Kariim" paragraph="japoy wwkkwk" />
-          <Search next="Surat" />
+          <Search next="Surat" setSearch={setSearch} />
           {loading ? (
             <Loader />
           ) : data != 0 ? (
-            <CardMain data={data.data} />
+            <CardDaftarSurat data={data.data} search={search} />
           ) : (
             error && <Error error={error} />
           )}

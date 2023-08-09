@@ -3,7 +3,7 @@ import {
   Navbar,
   HeaderMain,
   Search,
-  CardMain,
+  CardAsmaulHusna,
   Loader,
   Error,
 } from "../components";
@@ -14,6 +14,7 @@ const AsmaulHusna = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -35,11 +36,11 @@ const AsmaulHusna = () => {
       <Container>
         <Content>
           <HeaderMain title="Asma'ul Husna" paragraph="japoy wwkkwk" />
-          <Search next="Asma'ul Husna" />
+          <Search next="Asma'ul Husna" setSearch={setSearch} />
           {loading ? (
             <Loader />
           ) : data != 0 ? (
-            <CardMain data={data.asmaulHusna} />
+            <CardAsmaulHusna data={data.asmaulHusna} search={search} />
           ) : (
             error && <Error error={error} />
           )}

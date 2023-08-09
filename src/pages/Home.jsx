@@ -7,7 +7,10 @@ const Home = () => {
       <Navbar />
       <Container>
         <Content fixed={true}>
-          <HeaderMain title="WajiQuran.id" paragraph="Create by Haikal" />
+          <HeaderMain
+            title="WajiQuran.id"
+            paragraph="Created with ♥ by Haikal"
+          />
           <HomeNavigation />
         </Content>
       </Container>

@@ -1,27 +1,28 @@
 import { Wrapper, Container, Content } from "../layouts";
-import {
-  Navbar,
-  HeaderMain,
-  HeaderSurat,
-  Loader,
-  Error,
-  CardAyat,
-} from "../components";
-import { getSuratById } from "../services/getQuran.service";
-import { useEffect, useState } from "react";
+import { Navbar, HeaderMain, JadwalTable, Loader, Error } from "../components";
+import { useState, useEffect } from "react";
+import { getJadwalShalat } from "../services/getJadwalShalat.service";
+import { getDayName, getMonthName } from "../utils";
 import { useParams } from "react-router-dom";
 
-const QuranSurat = () => {
+const JadwalShalatById = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const { id } = useParams();
+  const date = new Date().getDate();
+  const day = new Date().getDay();
+  const month = new Date().getMonth();
+  const year = new Date().getFullYear();
+
+  const dayName = getDayName(day);
+  const monthName = getMonthName(month);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       try {
-        const result = await getSuratById(id);
+        const result = await getJadwalShalat({ id, year, month });
         setLoading(false);
         setData(result.data.data);
       } catch (err) {
@@ -41,13 +42,12 @@ const QuranSurat = () => {
           ) : data != 0 ? (
             <>
               <HeaderMain
-                title={`Surat ${data.namaLatin + " | " + data.nama}`}
-                paragraph={`${
-                  data.tempatTurun + " | " + data.arti + " | " + data.jumlahAyat
-                } Ayat`}
+                title={data.lokasi}
+                paragraph={`Provinsi ${
+                  data.daerah
+                }, ${dayName} ${`0${date}`.slice(-2)} ${monthName} ${year}`}
               />
-              <HeaderSurat data={data} />
-              <CardAyat data={data.ayat} />
+              <JadwalTable data={data.jadwal} date={date} />
             </>
           ) : (
             error && <Error error={error} />
@@ -58,4 +58,4 @@ const QuranSurat = () => {
   );
 };
 
-export default QuranSurat;
+export default JadwalShalatById;

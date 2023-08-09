@@ -1,11 +1,16 @@
 import { IconSearch } from "./icons";
 
-const Search = ({ next }) => {
+const Search = ({ next, setSearch }) => {
   return (
     <div className="search">
       <form onSubmit={(e) => e.preventDefault()}>
         <div>
-          <input type="text" placeholder={`Cari ${next} ...`} />
+          <input
+            onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            name="search"
+            placeholder={`Cari ${next} ...`}
+          />
           <IconSearch />
         </div>
       </form>

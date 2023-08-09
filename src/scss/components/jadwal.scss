@@ -1,0 +1,25 @@
+.jadwal {
+  display: flex;
+  .jadwal-wrapper {
+    margin: auto;
+    padding: 2rem 0;
+    display: flex;
+    overflow-x: auto;
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      td,
+      th {
+        border: 1px solid #eaeaea;
+        text-align: center;
+        padding: 8px 2rem;
+      }
+      tr:nth-child(even) {
+        background-color: #333;
+      }
+      tr.now {
+        background-color: rgb(187, 131, 0);
+      }
+    }
+  }
+}

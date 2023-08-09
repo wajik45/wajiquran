@@ -14,6 +14,7 @@ const JadwalShalat = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -35,11 +36,11 @@ const JadwalShalat = () => {
       <Container>
         <Content>
           <HeaderMain title="Jadwal Shalat" paragraph="japoy wwkkwk" />
-          <Search next="Kota / Kabupaten" />
+          <Search next="Kota / Kabupaten" setSearch={setSearch} />
           {loading ? (
             <Loader />
           ) : data != 0 ? (
-            <CardKota data={data} />
+            <CardKota data={data} search={search} />
           ) : (
             error && <Error error={error} />
           )}

@@ -16,3 +16,37 @@
     }
   }
 }
+
+.header-quran {
+  width: 50%;
+  margin: auto;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 2rem;
+  select {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+  }
+  a {
+    flex: 1;
+    padding: 0.5rem;
+    border: 2px solid #eaeaea;
+    border-radius: 5px;
+    width: 80px;
+    text-align: center;
+    display: inline-block;
+    &:hover {
+      outline: 2px solid green;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header-quran {
+    width: 100%;
+  }
+}

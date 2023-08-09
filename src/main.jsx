@@ -1,7 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, AsmaulHusna, JadwalShalat, Quran, QuranSurat } from "./pages";
+import {
+  Home,
+  AsmaulHusna,
+  JadwalShalat,
+  JadwalShalatById,
+  Quran,
+  QuranSurat,
+  QuranTafsir,
+} from "./pages";
 import "./scss/index.scss";
 
 const router = createBrowserRouter([
@@ -18,12 +26,20 @@ const router = createBrowserRouter([
     element: <QuranSurat />,
   },
   {
+    path: "/quran/tafsir/:id",
+    element: <QuranTafsir />,
+  },
+  {
     path: "/asmaul-husna",
     element: <AsmaulHusna />,
   },
   {
     path: "/jadwal-shalat",
     element: <JadwalShalat />,
+  },
+  {
+    path: "/jadwal-shalat/kota/:id",
+    element: <JadwalShalatById />,
   },
 ]);
 
