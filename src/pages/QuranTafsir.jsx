@@ -13,15 +13,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const QuranTafsir = () => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
-
   const { id } = useParams();
+
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
       try {
         const result = await getTafsirById(id);
         setLoading(false);
@@ -38,9 +37,9 @@ const QuranTafsir = () => {
       <Navbar />
       <Container>
         <Content>
-          {loading ? (
-            <Loader />
-          ) : data != 0 ? (
+          {loading && <Loader />}
+          {error && <Error />}
+          {data && (
             <>
               <HeaderMain
                 title={`Surat ${data.namaLatin + " | " + data.nama}`}
@@ -51,8 +50,6 @@ const QuranTafsir = () => {
               <HeaderTafsir data={data} />
               <CardTafsir data={data.tafsir} />
             </>
-          ) : (
-            error && <Error error={error} />
           )}
           <ToTop />
         </Content>

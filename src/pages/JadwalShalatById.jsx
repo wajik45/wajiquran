@@ -13,12 +13,14 @@ import { getDayName, getMonthName } from "../utils";
 import { useParams } from "react-router-dom";
 
 const JadwalShalatById = () => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
   const { id } = useParams();
-  const date = new Date().getDate();
+
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
   const day = new Date().getDay();
+  const date = new Date().getDate();
   const month = new Date().getMonth();
   const year = new Date().getFullYear();
 
@@ -27,7 +29,6 @@ const JadwalShalatById = () => {
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
       try {
         const result = await getJadwalShalat({ id, year, month });
         setLoading(false);
@@ -44,9 +45,9 @@ const JadwalShalatById = () => {
       <Navbar />
       <Container>
         <Content>
-          {loading ? (
-            <Loader />
-          ) : data != 0 ? (
+          {loading && <Loader />}
+          {error && <Error error={error} />}
+          {data && (
             <>
               <HeaderMain
                 title={data.lokasi}
@@ -56,8 +57,6 @@ const JadwalShalatById = () => {
               />
               <JadwalTable data={data.jadwal} date={date} />
             </>
-          ) : (
-            error && <Error error={error} />
           )}
           <ToTop />
         </Content>

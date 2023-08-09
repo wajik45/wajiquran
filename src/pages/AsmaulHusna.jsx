@@ -12,14 +12,13 @@ import { getAsmaulHusna } from "../services/getAsmaulHusna.service";
 import { useEffect, useState } from "react";
 
 const AsmaulHusna = () => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
       try {
         const result = await getAsmaulHusna();
         setLoading(false);
@@ -41,13 +40,9 @@ const AsmaulHusna = () => {
             paragraph="Nama-nama Allah SWT yang baik"
           />
           <Search next="Asma'ul Husna" setSearch={setSearch} />
-          {loading ? (
-            <Loader />
-          ) : data != 0 ? (
-            <CardAsmaulHusna data={data.asmaulHusna} search={search} />
-          ) : (
-            error && <Error error={error} />
-          )}
+          {loading && <Loader />}
+          {error && <Error error={error} />}
+          {data && <CardAsmaulHusna data={data.asmaulHusna} search={search} />}
           <ToTop />
         </Content>
       </Container>

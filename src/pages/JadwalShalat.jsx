@@ -12,14 +12,13 @@ import { useState, useEffect } from "react";
 import { getKota } from "../services/getJadwalShalat.service";
 
 const JadwalShalat = () => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
       try {
         const result = await getKota();
         setLoading(false);
@@ -41,13 +40,9 @@ const JadwalShalat = () => {
             paragraph="Jadwal Imsakiyah seluruh Kota di Indonesia"
           />
           <Search next="Kota / Kabupaten" setSearch={setSearch} />
-          {loading ? (
-            <Loader />
-          ) : data != 0 ? (
-            <CardKota data={data} search={search} />
-          ) : (
-            error && <Error error={error} />
-          )}
+          {loading && <Loader />}
+          {error && <Error error={error} />}
+          {data && <CardKota data={data} search={search} />}
           <ToTop />
         </Content>
       </Container>

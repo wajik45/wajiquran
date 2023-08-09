@@ -12,14 +12,13 @@ import { getSuratList } from "../services/getQuran.service";
 import { useEffect, useState } from "react";
 
 const Quran = () => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
       try {
         const result = await getSuratList();
         setLoading(false);
@@ -41,13 +40,9 @@ const Quran = () => {
             paragraph="Baca Al-Qur'an Terjemah & Latin"
           />
           <Search next="Surat" setSearch={setSearch} />
-          {loading ? (
-            <Loader />
-          ) : data != 0 ? (
-            <CardDaftarSurat data={data.data} search={search} />
-          ) : (
-            error && <Error error={error} />
-          )}
+          {loading && <Loader />}
+          {error && <Error error={error} />}
+          {data && <CardDaftarSurat data={data.data} search={search} />}
           <ToTop />
         </Content>
       </Container>
