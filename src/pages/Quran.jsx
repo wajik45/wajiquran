@@ -39,7 +39,7 @@ const Quran = () => {
             title="Al-Qur'an Al-Kariim"
             paragraph="Baca Al-Qur'an Terjemah & Latin"
           />
-          <Search next="Surat" setSearch={setSearch} />
+          <Search next="Surat / kata kunci" setSearch={setSearch} />
           {loading && <Loader />}
           {error && <Error error={error} />}
           {data && <CardDaftarSurat data={data.data} search={search} />}

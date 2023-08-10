@@ -7,7 +7,12 @@ export default (data, search) => {
       return replacing(item.lokasi).includes(replacing(search));
     }
     if (item.namaLatin) {
-      return replacing(item.namaLatin).includes(replacing(search));
+      return (
+        replacing(item.namaLatin).includes(replacing(search)) ||
+        replacing(item.arti).includes(replacing(search)) ||
+        (item.tempatTurun &&
+          replacing(item.tempatTurun).includes(replacing(search)))
+      );
     }
   });
 };

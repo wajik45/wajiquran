@@ -39,7 +39,7 @@ const AsmaulHusna = () => {
             title="Asma'ul Husna"
             paragraph="Nama-nama Allah SWT yang baik"
           />
-          <Search next="Asma'ul Husna" setSearch={setSearch} />
+          <Search next="Asma'ul Husna / kata kunci" setSearch={setSearch} />
           {loading && <Loader />}
           {error && <Error error={error} />}
           {data && <CardAsmaulHusna data={data.asmaulHusna} search={search} />}
