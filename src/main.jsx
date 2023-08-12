@@ -10,7 +10,7 @@ import {
   QuranSurat,
   QuranTafsir,
 } from "./pages";
-import "./scss/index.scss";
+import "./index.scss";
 
 const router = createBrowserRouter([
   {
