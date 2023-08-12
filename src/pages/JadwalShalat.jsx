@@ -1,16 +1,8 @@
-import { Wrapper, Container, Content } from "../layouts";
-import {
-  Navbar,
-  HeaderMain,
-  Search,
-  CardKota,
-  Loader,
-  Error,
-  ToTop,
-} from "../components";
+import { MainLayout } from "../layouts/MainLayout";
 import { useState, useEffect } from "react";
 import { getKota } from "../services/getJadwalShalat.service";
 import { setTheme } from "../utils";
+import * as components from "../components";
 
 const JadwalShalat = () => {
   const [loading, setLoading] = useState(true);
@@ -18,6 +10,8 @@ const JadwalShalat = () => {
   const [error, setError] = useState(null);
   const [isDark, setIsDark] = useState(null);
   const [search, setSearch] = useState("");
+
+  const { HeaderMain, Search, CardKota, Loader, Error, ToTop } = components;
 
   useEffect(() => {
     setTheme(setIsDark);
@@ -34,26 +28,17 @@ const JadwalShalat = () => {
   }, []);
 
   return (
-    <Wrapper isDark={isDark}>
-      <Navbar setIsDark={setIsDark} isDark={isDark} />
-      <Container>
-        <Content>
-          <HeaderMain
-            title="Jadwal Shalat"
-            paragraph="Jadwal Imsakiyah seluruh Kota di Indonesia"
-          />
-          <Search
-            next="Kota / Kabupaten"
-            setSearch={setSearch}
-            isDark={isDark}
-          />
-          {loading && <Loader />}
-          {error && <Error error={error} />}
-          {data && <CardKota data={data} search={search} isDark={isDark} />}
-          <ToTop isDark={isDark} />
-        </Content>
-      </Container>
-    </Wrapper>
+    <MainLayout setIsDark={setIsDark} isDark={isDark}>
+      <HeaderMain
+        title="Jadwal Shalat"
+        paragraph="Jadwal Imsakiyah seluruh Kota di Indonesia"
+      />
+      <Search next="Kota / Kabupaten" setSearch={setSearch} isDark={isDark} />
+      {loading && <Loader />}
+      {error && <Error error={error} />}
+      {data && <CardKota data={data} search={search} isDark={isDark} />}
+      <ToTop isDark={isDark} />
+    </MainLayout>
   );
 };
 

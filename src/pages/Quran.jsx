@@ -1,16 +1,8 @@
-import { Wrapper, Container, Content } from "../layouts";
-import {
-  Navbar,
-  HeaderMain,
-  Search,
-  CardDaftarSurat,
-  Loader,
-  Error,
-  ToTop,
-} from "../components";
+import { MainLayout } from "../layouts/MainLayout";
 import { getSuratList } from "../services/getQuran.service";
 import { useEffect, useState } from "react";
 import { setTheme } from "../utils";
+import * as components from "../components";
 
 const Quran = () => {
   const [loading, setLoading] = useState(true);
@@ -18,6 +10,9 @@ const Quran = () => {
   const [error, setError] = useState(null);
   const [isDark, setIsDark] = useState(null);
   const [search, setSearch] = useState("");
+
+  const { HeaderMain, Search, CardDaftarSurat, Loader, Error, ToTop } =
+    components;
 
   useEffect(() => {
     setTheme(setIsDark);
@@ -34,28 +29,19 @@ const Quran = () => {
   }, []);
 
   return (
-    <Wrapper isDark={isDark}>
-      <Navbar setIsDark={setIsDark} isDark={isDark} />
-      <Container>
-        <Content>
-          <HeaderMain
-            title="Al-Qur'an Al-Kariim"
-            paragraph="Baca Al-Qur'an Terjemah & Latin"
-          />
-          <Search
-            next="Surat / kata kunci"
-            setSearch={setSearch}
-            isDark={isDark}
-          />
-          {loading && <Loader />}
-          {error && <Error error={error} />}
-          {data && (
-            <CardDaftarSurat data={data.data} search={search} isDark={isDark} />
-          )}
-          <ToTop isDark={isDark} />
-        </Content>
-      </Container>
-    </Wrapper>
+    <MainLayout setIsDark={setIsDark} isDark={isDark}>
+      <HeaderMain
+        title="Al-Qur'an Al-Kariim"
+        paragraph="Baca Al-Qur'an Terjemah & Latin"
+      />
+      <Search next="Surat / kata kunci" setSearch={setSearch} isDark={isDark} />
+      {loading && <Loader />}
+      {error && <Error error={error} />}
+      {data && (
+        <CardDaftarSurat data={data.data} search={search} isDark={isDark} />
+      )}
+      <ToTop isDark={isDark} />
+    </MainLayout>
   );
 };
 

@@ -1,16 +1,8 @@
-import { Wrapper, Container, Content } from "../layouts";
-import {
-  Navbar,
-  HeaderMain,
-  Search,
-  CardAsmaulHusna,
-  Loader,
-  Error,
-  ToTop,
-} from "../components";
+import { MainLayout } from "../layouts/MainLayout";
 import { getAsmaulHusna } from "../services/getAsmaulHusna.service";
 import { useEffect, useState } from "react";
 import { setTheme } from "../utils";
+import * as components from "../components";
 
 const AsmaulHusna = () => {
   const [loading, setLoading] = useState(true);
@@ -18,6 +10,9 @@ const AsmaulHusna = () => {
   const [error, setError] = useState(null);
   const [isDark, setIsDark] = useState(null);
   const [search, setSearch] = useState("");
+
+  const { HeaderMain, Search, CardAsmaulHusna, Loader, Error, ToTop } =
+    components;
 
   useEffect(() => {
     setTheme(setIsDark);
@@ -34,32 +29,27 @@ const AsmaulHusna = () => {
   }, []);
 
   return (
-    <Wrapper isDark={isDark}>
-      <Navbar isDark={isDark} setIsDark={setIsDark} />
-      <Container>
-        <Content>
-          <HeaderMain
-            title="Asma'ul Husna"
-            paragraph="Nama-nama Allah SWT yang baik"
-          />
-          <Search
-            next="Asma'ul Husna / kata kunci"
-            setSearch={setSearch}
-            isDark={isDark}
-          />
-          {loading && <Loader />}
-          {error && <Error error={error} />}
-          {data && (
-            <CardAsmaulHusna
-              data={data.asmaulHusna}
-              search={search}
-              isDark={isDark}
-            />
-          )}
-          <ToTop isDark={isDark} />
-        </Content>
-      </Container>
-    </Wrapper>
+    <MainLayout setIsDark={setIsDark} isDark={isDark}>
+      <HeaderMain
+        title="Asma'ul Husna"
+        paragraph="Nama-nama Allah SWT yang baik"
+      />
+      <Search
+        next="Asma'ul Husna / kata kunci"
+        setSearch={setSearch}
+        isDark={isDark}
+      />
+      {loading && <Loader />}
+      {error && <Error error={error} />}
+      {data && (
+        <CardAsmaulHusna
+          data={data.asmaulHusna}
+          search={search}
+          isDark={isDark}
+        />
+      )}
+      <ToTop isDark={isDark} />
+    </MainLayout>
   );
 };
 
