@@ -11,6 +11,7 @@ import {
 import { getSuratById } from "../services/getQuran.service";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { setTheme } from "../utils";
 
 const QuranSurat = () => {
   const { id } = useParams();
@@ -18,8 +19,10 @@ const QuranSurat = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [isDark, setIsDark] = useState(null);
 
   useEffect(() => {
+    setTheme(setIsDark);
     (async () => {
       try {
         const result = await getSuratById(id);
@@ -33,8 +36,8 @@ const QuranSurat = () => {
   }, []);
 
   return (
-    <Wrapper>
-      <Navbar />
+    <Wrapper isDark={isDark}>
+      <Navbar setIsDark={setIsDark} isDark={isDark} />
       <Container>
         <Content>
           {loading && <Loader />}
@@ -47,11 +50,11 @@ const QuranSurat = () => {
                   data.tempatTurun + " | " + data.arti + " | " + data.jumlahAyat
                 } Ayat`}
               />
-              <HeaderSurat data={data} />
-              <CardAyat data={data.ayat} />
+              <HeaderSurat data={data} isDark={isDark} />
+              <CardAyat data={data.ayat} isDark={isDark} />
             </>
           )}
-          <ToTop />
+          <ToTop isDark={isDark} />
         </Content>
       </Container>
     </Wrapper>

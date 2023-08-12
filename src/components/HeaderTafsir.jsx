@@ -1,10 +1,21 @@
 import { Link, useParams } from "react-router-dom";
 import { IconBxsLeftArrowAlt } from "./icons";
 
-const HeaderTafsir = ({ data }) => {
+const HeaderTafsir = ({ data, isDark }) => {
   const { id } = useParams();
 
-  const handleChangeAyat = (e) => {
+  const conditionalSelectClass = () => {
+    return `${isDark ? "dark" : "light"}-bg-semi`;
+  };
+
+  const conditionalButtonClass = () => {
+    return `
+      ${isDark ? "light" : "dark"}-color
+      ${isDark ? "light" : "dark"}-border
+    `;
+  };
+
+  const handleAyatChange = (e) => {
     const element = document.getElementById(e.target.value);
     scrollTo({
       behavior: "smooth",
@@ -16,11 +27,11 @@ const HeaderTafsir = ({ data }) => {
 
   return (
     <div className="header-quran">
-      <Link to={`/quran/surat/${id}`}>
+      <Link className={conditionalButtonClass()} to={`/quran/surat/${id}`}>
         <IconBxsLeftArrowAlt />
         <span>Surat</span>
       </Link>
-      <select onChange={handleChangeAyat}>
+      <select onChange={handleAyatChange} className={conditionalSelectClass()}>
         <option value="">Pilih Ayat</option>
         {data.tafsir.map((item) => (
           <option key={item.ayat} value={item.ayat}>

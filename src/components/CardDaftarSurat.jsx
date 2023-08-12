@@ -2,8 +2,17 @@ import { Link } from "react-router-dom";
 import { filtering } from "../utils";
 import ItemNotFound from "./ItemNotFound";
 
-const CardDaftarSurat = ({ data, search }) => {
+const CardDaftarSurat = (props) => {
+  const { data, search, isDark } = props;
   const filter = filtering(data, search);
+
+  const conditionalCardClass = () => {
+    return `
+      ${isDark ? "light" : "dark"}-color
+      ${isDark ? "light" : "dark"}-border-sm
+      ${isDark ? "dark" : "light"}-bg-semi card
+    `;
+  };
 
   return filter < 1 !== true ? (
     <div className="card-wrapper">
@@ -11,7 +20,7 @@ const CardDaftarSurat = ({ data, search }) => {
         <Link
           to={`/quran/surat/${item.nomor}`}
           key={item.nomor}
-          className="card"
+          className={conditionalCardClass()}
         >
           <div className="card-header">
             <h5>

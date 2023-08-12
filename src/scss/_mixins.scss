@@ -1,0 +1,13 @@
+@import "./variables";
+
+@mixin dark {
+  color-scheme: dark;
+  background-color: $dark;
+  color: $light;
+}
+
+@mixin light {
+  color-scheme: light;
+  background-color: $light;
+  color: $dark;
+}

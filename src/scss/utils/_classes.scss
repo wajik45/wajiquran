@@ -1,3 +1,48 @@
+@import "../mixins";
+@import "../variables";
+
+.light {
+  @include light;
+}
+.dark {
+  @include dark;
+}
+.light-color {
+  color: $light;
+}
+.dark-color {
+  color: $dark;
+}
+.light-bg {
+  background-color: $light;
+}
+.dark-bg {
+  background-color: $dark;
+}
+.light-bg-semi {
+  background-color: $light-semi;
+}
+.dark-bg-semi {
+  background-color: $dark-semi;
+}
+.light-shadow {
+  box-shadow: 0 0 50px -20px $light;
+}
+.dark-shadow {
+  box-shadow: 0 0 50px -20px $dark;
+}
+.light-border-sm {
+  border: 1px solid $light;
+}
+.dark-border-sm {
+  border: 1px solid $dark;
+}
+.light-border {
+  border: 2px solid $light;
+}
+.dark-border {
+  border: 2px solid $dark;
+}
 .text-justify {
   text-align: justify;
 }
@@ -9,8 +54,8 @@
 }
 .active {
   border-radius: 5px;
-  box-shadow: 0 0 20px 0 green;
+  box-shadow: 0 0 20px 0 $primary;
 }
 .bg-green {
-  background-color: green;
+  background-color: $primary;
 }

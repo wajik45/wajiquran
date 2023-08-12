@@ -10,12 +10,14 @@
       border-collapse: collapse;
       td,
       th {
-        border: 1px solid #eaeaea;
         text-align: center;
         padding: 8px 2rem;
       }
-      tr:nth-child(even) {
-        background-color: #333;
+      .dark-col:nth-child(even) {
+        background-color: $dark-semi;
+      }
+      .light-col:nth-child(even) {
+        background-color: $light-semi;
       }
       tr.now {
         background-color: rgb(187, 131, 0);

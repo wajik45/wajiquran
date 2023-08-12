@@ -1,8 +1,8 @@
+@import "../variables";
+
 #navbar {
   width: 80px;
   position: fixed;
-  background-color: #222;
-  box-shadow: 0 0 50px -20px #eaeaea;
   left: 0;
   nav {
     height: 100vh;
@@ -15,7 +15,7 @@
       li {
         &:hover span,
         &:hover svg {
-          color: #777;
+          color: #555;
         }
         a {
           font-size: 0.8rem;

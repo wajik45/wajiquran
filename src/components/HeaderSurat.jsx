@@ -7,19 +7,27 @@ import {
   IconPauseFill,
 } from "./icons";
 
-const HeaderSurat = ({ data }) => {
+const HeaderSurat = ({ data, isDark }) => {
   const { id } = useParams();
   const [play, setPlay] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const audio = new Audio("");
 
-  const handleClickPlay = (e) => {
-    e.preventDefault();
-    setPlay(!play);
-    console.log("ok");
+  const conditionalSelectClass = () => {
+    return `${isDark ? "dark" : "light"}-bg-semi`;
   };
 
-  const handleChangeAyat = (e) => {
+  const conditionalButtonClass = () => {
+    return `
+      ${isDark ? "light" : "dark"}-color
+      ${isDark ? "light" : "dark"}-border
+    `;
+  };
+
+  const handlePlayClick = (e) => {
+    e.preventDefault();
+    setPlay(!play);
+  };
+
+  const handleAyatChange = (e) => {
     const element = document.getElementById(e.target.value);
     scrollTo({
       behavior: "smooth",
@@ -29,14 +37,17 @@ const HeaderSurat = ({ data }) => {
     e.target.selectedIndex = 0;
   };
 
-  const handleChangeQori = (e) => {
+  const handleQoriChange = (e) => {
     console.log("qori");
   };
 
   return (
     <>
       <div className="header-quran">
-        <select onChange={handleChangeAyat}>
+        <select
+          onChange={handleAyatChange}
+          className={conditionalSelectClass()}
+        >
           <option value="">Pilih Ayat</option>
           {data.ayat.map((item) => (
             <option key={item.nomorAyat} value={item.nomorAyat}>
@@ -44,7 +55,10 @@ const HeaderSurat = ({ data }) => {
             </option>
           ))}
         </select>
-        <select onChange={handleChangeQori}>
+        <select
+          onChange={handleQoriChange}
+          className={conditionalSelectClass()}
+        >
           <option value="">Pilih Qori</option>
           {Object.values(data.audioFull).map((item, index) => (
             <option key={index} value={item}>
@@ -54,15 +68,19 @@ const HeaderSurat = ({ data }) => {
         </select>
       </div>
       <div className="header-quran">
-        <Link to="/quran">
+        <Link className={conditionalButtonClass()} to="/quran">
           <IconBxsLeftArrowAlt />
           <span>Daftar</span>
         </Link>
-        <Link to={`/quran/tafsir/${id}`}>
+        <Link className={conditionalButtonClass()} to={`/quran/tafsir/${id}`}>
           <IconList />
           <span>Tafsir</span>
         </Link>
-        <Link to="" onClick={handleClickPlay}>
+        <Link
+          onClick={handlePlayClick}
+          className={conditionalButtonClass()}
+          to=""
+        >
           {play ? (
             <>
               <IconPauseFill />

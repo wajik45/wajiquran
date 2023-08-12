@@ -1,38 +1,48 @@
-const JadwalTable = ({ data, date }) => {
+const JadwalTable = (props) => {
+  const { data, date, isDark } = props;
+
+  const conditionalThTdClass = () => {
+    return `${isDark ? "light" : "dark"}-border-sm`;
+  };
+
+  const conditionalTrClass = (item) => {
+    const tanggal = item.tanggal;
+    const length = tanggal.length;
+
+    return tanggal.slice(length - 10).split("/")[0] == `0${date}`.slice(-2)
+      ? "now"
+      : `
+        ${isDark ? "dark" : "light"}-col
+        ${isDark ? "light" : "dark"}-border-sm
+      `;
+  };
+
   return (
     <div className="jadwal">
       <div className="jadwal-wrapper">
         <table>
           <tr>
-            <th>Tanggal</th>
-            <th>Imsak</th>
-            <th>Subuh</th>
-            <th>Terbit</th>
-            <th>Dhuha</th>
-            <th>Dzuhur</th>
-            <th>Ashar</th>
-            <th>Maghrib</th>
-            <th>Isya</th>
+            <th className={conditionalThTdClass()}>Tanggal</th>
+            <th className={conditionalThTdClass()}>Imsak</th>
+            <th className={conditionalThTdClass()}>Subuh</th>
+            <th className={conditionalThTdClass()}>Terbit</th>
+            <th className={conditionalThTdClass()}>Dhuha</th>
+            <th className={conditionalThTdClass()}>Dzuhur</th>
+            <th className={conditionalThTdClass()}>Ashar</th>
+            <th className={conditionalThTdClass()}>Maghrib</th>
+            <th className={conditionalThTdClass()}>Isya</th>
           </tr>
           {data.map((item) => (
-            <tr
-              key={item.tanggal}
-              className={
-                item.tanggal.slice(item.tanggal.length - 10).split("/")[0] ==
-                `0${date}`.slice(-2)
-                  ? "now"
-                  : ""
-              }
-            >
-              <td>{item.tanggal}</td>
-              <td>{item.imsak}</td>
-              <td>{item.subuh}</td>
-              <td>{item.terbit}</td>
-              <td>{item.dhuha}</td>
-              <td>{item.dzuhur}</td>
-              <td>{item.ashar}</td>
-              <td>{item.maghrib}</td>
-              <td>{item.isya}</td>
+            <tr key={item.tanggal} className={conditionalTrClass(item)}>
+              <td className={conditionalThTdClass()}>{item.tanggal}</td>
+              <td className={conditionalThTdClass()}>{item.imsak}</td>
+              <td className={conditionalThTdClass()}>{item.subuh}</td>
+              <td className={conditionalThTdClass()}>{item.terbit}</td>
+              <td className={conditionalThTdClass()}>{item.dhuha}</td>
+              <td className={conditionalThTdClass()}>{item.dzuhur}</td>
+              <td className={conditionalThTdClass()}>{item.ashar}</td>
+              <td className={conditionalThTdClass()}>{item.maghrib}</td>
+              <td className={conditionalThTdClass()}>{item.isya}</td>
             </tr>
           ))}
         </table>

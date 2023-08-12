@@ -1,9 +1,25 @@
-const CardAyat = ({ data }) => {
+const CardAyat = ({ data, isDark }) => {
+  const conditionalCardClass = () => {
+    return `${isDark ? "light" : "dark"}-border-sm card-quran`;
+  };
+
+  const conditionalCardHeaderClass = () => {
+    return `${isDark ? "dark" : "light"}-bg-semi card-quran-header`;
+  };
+
+  const conditionalLineClass = () => {
+    return `${isDark ? "dark" : "light"} line`;
+  };
+
   return (
     <div className="card-quran-wrapper">
       {data.map((item) => (
-        <div id={item.nomorAyat} key={item.nomorAyat} className="card-quran">
-          <div className="card-quran-header">
+        <div
+          id={item.nomorAyat}
+          key={item.nomorAyat}
+          className={conditionalCardClass()}
+        >
+          <div className={conditionalCardHeaderClass()}>
             <h4>{item.nomorAyat}.</h4>
           </div>
           <div className="card-quran-body">
@@ -11,7 +27,7 @@ const CardAyat = ({ data }) => {
             <p>
               <b>{item.teksLatin}</b>
             </p>
-            <div className="line"></div>
+            <div className={conditionalLineClass()}></div>
             <p className="lh-md">{item.teksIndonesia}</p>
           </div>
         </div>

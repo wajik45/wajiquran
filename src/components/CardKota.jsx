@@ -2,8 +2,16 @@ import { Link } from "react-router-dom";
 import { filtering } from "../utils";
 import ItemNotFound from "./ItemNotFound";
 
-const CardKota = ({ data, search }) => {
+const CardKota = (props) => {
+  const { data, search, isDark } = props;
   const filter = filtering(data, search);
+
+  const conditionalCardClass = () => {
+    return `
+      ${isDark ? "light" : "dark"}-color
+      ${isDark ? "light" : "dark"}-border-sm card
+    `;
+  };
 
   return filter < 1 !== true ? (
     <div className="card-wrapper">
@@ -11,7 +19,7 @@ const CardKota = ({ data, search }) => {
         <Link
           to={`/jadwal-shalat/kota/${item.id}`}
           key={item.id}
-          className="card"
+          className={conditionalCardClass()}
         >
           <div className="card-header">
             <h5>{item.lokasi}</h5>
