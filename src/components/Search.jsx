@@ -20,6 +20,7 @@ const Search = (props) => {
     setIsEmpty(true);
     setSearch("");
     input.current.value = "";
+    input.current.focus();
   };
 
   return (

@@ -22,8 +22,8 @@ const HeaderSurat = ({ data, isDark }) => {
     `;
   };
 
-  const handlePlayClick = (e) => {
-    e.preventDefault();
+  const handlePlayClick = () => {
+    return alert("Masih dalam penegembangan");
     setPlay(!play);
   };
 
