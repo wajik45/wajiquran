@@ -1,5 +1,9 @@
 @import "../mixins";
 @import "../variables";
+@font-face {
+  font-family: "Arab";
+  src: url("../../../public/font/LPMQ\ IsepMisbah.ttf");
+}
 
 .light {
   @include light;
@@ -50,7 +54,7 @@
   line-height: 1.3rem;
 }
 .lh-lg {
-  line-height: 3.5rem;
+  line-height: 5rem;
 }
 .active {
   border-radius: 5px;
@@ -58,4 +62,7 @@
 }
 .bg-green {
   background-color: $primary;
+}
+.font-arab {
+  font-family: "Arab";
 }

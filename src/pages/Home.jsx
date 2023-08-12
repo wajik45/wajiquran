@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <MainLayout setIsDark={setIsDark} isDark={isDark}>
-      <HeaderMain title="WajiQuran.id" paragraph="Created with ♥ by Haikal" />
+      <HeaderMain title="WajiQuran" paragraph="Created with ♥ by Haikal" />
       <HomeNavigation isDark={isDark} />
     </MainLayout>
   );

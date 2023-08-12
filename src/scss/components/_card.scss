@@ -13,14 +13,12 @@
     &:hover {
       outline: 2px solid $primary;
     }
-    .card-header {
-      padding: 0.5rem;
-    }
     .card-body {
-      padding: 0.5rem;
       text-align: right;
       h3 {
-        padding-bottom: 0.5rem;
+        font-weight: 500;
+        font-size: 1.5rem;
+        padding: 0.3rem;
       }
     }
   }
@@ -53,6 +51,8 @@
     .card-quran-body {
       h1 {
         text-align: right;
+        font-size: 2.2rem;
+        font-weight: 500;
         padding: 2rem 0;
       }
       .line {
@@ -61,6 +61,18 @@
       }
       p {
         padding-top: 0.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .card-quran-wrapper {
+    .card-quran {
+      .card-quran-body {
+        h1 {
+          font-size: 2rem;
+        }
       }
     }
   }

@@ -28,7 +28,7 @@ const CardDaftarSurat = (props) => {
             </h5>
           </div>
           <div className="card-body">
-            <h3>{item.nama}</h3>
+            <h3 className="font-arab">{item.nama}</h3>
             <p>
               {item.tempatTurun} | {item.arti}
             </p>

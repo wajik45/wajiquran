@@ -23,7 +23,7 @@ const CardAyat = ({ data, isDark }) => {
             <h4>{item.nomorAyat}.</h4>
           </div>
           <div className="card-quran-body">
-            <h1 className="lh-lg">{item.teksArab}</h1>
+            <h1 className="lh-lg font-arab">{item.teksArab}</h1>
             <p>
               <b>{item.teksLatin}</b>
             </p>

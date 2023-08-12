@@ -37,7 +37,8 @@ const QuranTafsir = () => {
       {data && (
         <>
           <HeaderMain
-            title={`Surat ${data.namaLatin + " | " + data.nama}`}
+            title={`Surat ${data.namaLatin} |`}
+            arab={data.nama}
             paragraph={`${
               data.tempatTurun + " | " + data.arti + " | " + data.jumlahAyat
             } Ayat`}
