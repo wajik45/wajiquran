@@ -140,6 +140,34 @@ const IconSunFill = (props) => {
   );
 };
 
+const IconLeft = (props) => {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      height="1em"
+      width="1em"
+      {...props}
+    >
+      <path d="M5 12l7 6v-5h6v-2h-6V6z" />
+    </svg>
+  );
+};
+
+const IconRight = (props) => {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      height="1em"
+      width="1em"
+      {...props}
+    >
+      <path d="M19 12l-7-6v5H6v2h6v5z" />
+    </svg>
+  );
+};
+
 export {
   IconBookQuran,
   IconHome,
@@ -151,4 +179,6 @@ export {
   IconPauseFill,
   IconClose,
   IconSunFill,
+  IconLeft,
+  IconRight,
 };

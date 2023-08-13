@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { IconLeft, IconRight } from "./icons";
 
 const QuranNavigation = ({ data, type, isDark }) => {
   const conditionalButtonClass = (type) => {
@@ -16,7 +17,8 @@ const QuranNavigation = ({ data, type, isDark }) => {
           to={`/quran/${type}/${data.suratSebelumnya.nomor}`}
           className={conditionalButtonClass("left")}
         >
-          <span>⬅ {data.suratSebelumnya.namaLatin}</span>
+          <IconLeft />
+          <span>{data.suratSebelumnya.namaLatin}</span>
         </Link>
       )}
       {!data.suratSebelumnya && (
@@ -24,7 +26,8 @@ const QuranNavigation = ({ data, type, isDark }) => {
           to={`/quran/${type}/${data.suratSelanjutnya.nomor}`}
           className={conditionalButtonClass("right")}
         >
-          <span>{data.suratSelanjutnya.namaLatin} ➡</span>
+          <span>{data.suratSelanjutnya.namaLatin}</span>
+          <IconRight />
         </Link>
       )}
       {data.suratSelanjutnya && data.suratSebelumnya && (
@@ -33,13 +36,15 @@ const QuranNavigation = ({ data, type, isDark }) => {
             to={`/quran/${type}/${data.suratSebelumnya.nomor}`}
             className={conditionalButtonClass("left")}
           >
-            <span>⬅ {data.suratSebelumnya.namaLatin}</span>
+            <IconLeft />
+            <span>{data.suratSebelumnya.namaLatin}</span>
           </Link>
           <Link
             to={`/quran/${type}/${data.suratSelanjutnya.nomor}`}
             className={conditionalButtonClass("right")}
           >
-            <span>{data.suratSelanjutnya.namaLatin} ➡</span>
+            <span>{data.suratSelanjutnya.namaLatin}</span>
+            <IconRight />
           </Link>
         </>
       )}
