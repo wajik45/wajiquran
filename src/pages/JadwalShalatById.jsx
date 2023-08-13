@@ -9,7 +9,7 @@ import { setTheme } from "../utils";
 const JadwalShalatById = () => {
   const { id } = useParams();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isDark, setIsDark] = useState(null);
@@ -25,6 +25,7 @@ const JadwalShalatById = () => {
   useEffect(() => {
     setTheme(setIsDark);
     (async () => {
+      setLoading(true);
       try {
         const result = await getJadwalShalat({ id, year, month });
         setLoading(false);

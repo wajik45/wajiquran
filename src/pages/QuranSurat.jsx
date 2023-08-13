@@ -8,7 +8,7 @@ import * as components from "../components";
 const QuranSurat = () => {
   const { id } = useParams();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isDark, setIsDark] = useState(null);
