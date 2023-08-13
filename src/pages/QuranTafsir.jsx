@@ -41,7 +41,7 @@ const QuranTafsir = () => {
     <MainLayout
       setIsDark={setIsDark}
       isDark={isDark}
-      fixed={data ? false : true}
+      fixed={loading ? true : false}
     >
       {loading ? (
         <Loader />

@@ -31,7 +31,7 @@ const Quran = () => {
     <MainLayout
       setIsDark={setIsDark}
       isDark={isDark}
-      fixed={data ? false : true}
+      fixed={loading ? true : false}
     >
       <HeaderMain
         title="Al-Qur'an Al-Kariim"

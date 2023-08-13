@@ -20,6 +20,7 @@ const HeaderSurat = ({ data, isDark }) => {
 
   const handlePlayClick = () => {
     if (audioSource === "") return alert("Pilih qori terlebih dahulu");
+    if (loading === true) return;
 
     setPlay(!play);
 
