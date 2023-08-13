@@ -16,7 +16,7 @@ const QuranNavigation = ({ data, type, isDark }) => {
           to={`/quran/${type}/${data.suratSebelumnya.nomor}`}
           className={conditionalButtonClass("left")}
         >
-          ⬅ {data.suratSebelumnya.namaLatin}
+          <span>⬅ {data.suratSebelumnya.namaLatin}</span>
         </Link>
       )}
       {!data.suratSebelumnya && (
@@ -24,7 +24,7 @@ const QuranNavigation = ({ data, type, isDark }) => {
           to={`/quran/${type}/${data.suratSelanjutnya.nomor}`}
           className={conditionalButtonClass("right")}
         >
-          {data.suratSelanjutnya.namaLatin} ➡
+          <span>{data.suratSelanjutnya.namaLatin} ➡</span>
         </Link>
       )}
       {data.suratSelanjutnya && data.suratSebelumnya && (
@@ -33,13 +33,13 @@ const QuranNavigation = ({ data, type, isDark }) => {
             to={`/quran/${type}/${data.suratSebelumnya.nomor}`}
             className={conditionalButtonClass("left")}
           >
-            ⬅ {data.suratSebelumnya.namaLatin}
+            <span>⬅ {data.suratSebelumnya.namaLatin}</span>
           </Link>
           <Link
             to={`/quran/${type}/${data.suratSelanjutnya.nomor}`}
             className={conditionalButtonClass("right")}
           >
-            {data.suratSelanjutnya.namaLatin} ➡
+            <span>{data.suratSelanjutnya.namaLatin} ➡</span>
           </Link>
         </>
       )}

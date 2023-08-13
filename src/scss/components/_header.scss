@@ -41,6 +41,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    span {
+      margin: auto;
+    }
     &:hover {
       outline: 2px solid $primary;
     }
