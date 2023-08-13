@@ -11,7 +11,7 @@ const JadwalShalat = () => {
   const [isDark, setIsDark] = useState(null);
   const [search, setSearch] = useState("");
 
-  const { HeaderMain, Search, CardKota, Loader, Error, ToTop } = components;
+  const { HeaderMain, Search, CardKota, Loader, Error } = components;
 
   useEffect(() => {
     setTheme(setIsDark);
@@ -28,16 +28,23 @@ const JadwalShalat = () => {
   }, []);
 
   return (
-    <MainLayout setIsDark={setIsDark} isDark={isDark}>
+    <MainLayout
+      setIsDark={setIsDark}
+      isDark={isDark}
+      fixed={data ? false : true}
+    >
       <HeaderMain
         title="Jadwal Shalat"
         paragraph="Jadwal Imsakiyah seluruh Kota di Indonesia"
       />
       <Search next="Kota / Kabupaten" setSearch={setSearch} isDark={isDark} />
-      {loading && <Loader />}
-      {error && <Error error={error} />}
-      {data && <CardKota data={data} search={search} isDark={isDark} />}
-      <ToTop isDark={isDark} />
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Error error={error} />
+      ) : (
+        data && <CardKota data={data} search={search} isDark={isDark} />
+      )}
     </MainLayout>
   );
 };

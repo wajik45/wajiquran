@@ -13,6 +13,8 @@ import HomeNavigation from "./HomeNavigation";
 import Loader from "./Loader";
 import Error from "./Error";
 import ToTop from "./ToTop";
+import Bismillah from "./Bismillah";
+import QuranNavigation from "./QuranNavigation";
 
 export {
   Navbar,
@@ -30,4 +32,6 @@ export {
   Loader,
   Error,
   ToTop,
+  Bismillah,
+  QuranNavigation,
 };

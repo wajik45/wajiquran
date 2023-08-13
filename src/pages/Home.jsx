@@ -11,7 +11,7 @@ const Home = () => {
   }, []);
 
   return (
-    <MainLayout setIsDark={setIsDark} isDark={isDark}>
+    <MainLayout setIsDark={setIsDark} isDark={isDark} fixed={true}>
       <HeaderMain title="WajiQuran" paragraph="Created with ♥ by Haikal" />
       <HomeNavigation isDark={isDark} />
     </MainLayout>

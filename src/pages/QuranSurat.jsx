@@ -13,12 +13,20 @@ const QuranSurat = () => {
   const [error, setError] = useState(null);
   const [isDark, setIsDark] = useState(null);
 
-  const { HeaderMain, Loader, Error, ToTop, HeaderSurat, CardAyat } =
-    components;
+  const {
+    HeaderMain,
+    Loader,
+    Error,
+    HeaderSurat,
+    CardAyat,
+    Bismillah,
+    QuranNavigation,
+  } = components;
 
   useEffect(() => {
     setTheme(setIsDark);
     (async () => {
+      setLoading(true);
       try {
         const result = await getSuratById(id);
         setLoading(false);
@@ -28,26 +36,35 @@ const QuranSurat = () => {
         setError(err);
       }
     })();
-  }, []);
+  }, [id]);
 
   return (
-    <MainLayout setIsDark={setIsDark} isDark={isDark}>
-      {loading && <Loader />}
-      {error && <Error error={error} />}
-      {data && (
-        <>
-          <HeaderMain
-            title={`Surat ${data.namaLatin} |`}
-            arab={data.nama}
-            paragraph={`${
-              data.tempatTurun + " | " + data.arti + " | " + data.jumlahAyat
-            } Ayat`}
-          />
-          <HeaderSurat data={data} isDark={isDark} />
-          <CardAyat data={data.ayat} isDark={isDark} />
-        </>
+    <MainLayout
+      setIsDark={setIsDark}
+      isDark={isDark}
+      fixed={data ? false : true}
+    >
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Error error={error} />
+      ) : (
+        data && (
+          <>
+            <HeaderMain
+              title={`Surat ${data.namaLatin} |`}
+              arab={data.nama}
+              paragraph={`${
+                data.tempatTurun + " | " + data.arti + " | " + data.jumlahAyat
+              } Ayat`}
+            />
+            <HeaderSurat data={data} isDark={isDark} />
+            <Bismillah isDark={isDark} />
+            <CardAyat data={data.ayat} isDark={isDark} />
+            <QuranNavigation data={data} type="surat" />
+          </>
+        )
       )}
-      <ToTop isDark={isDark} />
     </MainLayout>
   );
 };

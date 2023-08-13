@@ -11,8 +11,7 @@ const AsmaulHusna = () => {
   const [isDark, setIsDark] = useState(null);
   const [search, setSearch] = useState("");
 
-  const { HeaderMain, Search, CardAsmaulHusna, Loader, Error, ToTop } =
-    components;
+  const { HeaderMain, Search, CardAsmaulHusna, Loader, Error } = components;
 
   useEffect(() => {
     setTheme(setIsDark);
@@ -29,7 +28,11 @@ const AsmaulHusna = () => {
   }, []);
 
   return (
-    <MainLayout setIsDark={setIsDark} isDark={isDark}>
+    <MainLayout
+      setIsDark={setIsDark}
+      isDark={isDark}
+      fixed={data ? false : true}
+    >
       <HeaderMain
         title="Asma'ul Husna"
         paragraph="Nama-nama Allah SWT yang baik"
@@ -39,16 +42,19 @@ const AsmaulHusna = () => {
         setSearch={setSearch}
         isDark={isDark}
       />
-      {loading && <Loader />}
-      {error && <Error error={error} />}
-      {data && (
-        <CardAsmaulHusna
-          data={data.asmaulHusna}
-          search={search}
-          isDark={isDark}
-        />
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Error error={error} />
+      ) : (
+        data && (
+          <CardAsmaulHusna
+            data={data.asmaulHusna}
+            search={search}
+            isDark={isDark}
+          />
+        )
       )}
-      <ToTop isDark={isDark} />
     </MainLayout>
   );
 };

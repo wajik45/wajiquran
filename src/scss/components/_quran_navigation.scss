@@ -1,0 +1,22 @@
+@import "../variables";
+
+.quran-navigation {
+  height: 40px;
+  padding-bottom: 60px;
+  position: relative;
+  a {
+    display: inline-block;
+    position: absolute;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    &:hover {
+      outline: 2px solid $primary;
+    }
+  }
+  a.left {
+    left: 0;
+  }
+  a.right {
+    right: 0;
+  }
+}

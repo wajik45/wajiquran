@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   IconBxsLeftArrowAlt,
@@ -10,21 +10,22 @@ import {
 const HeaderSurat = ({ data, isDark }) => {
   const { id } = useParams();
   const [play, setPlay] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [audioSource, setAudioSource] = useState("");
+  const audio = useRef(null);
 
-  const conditionalSelectClass = () => {
-    return `${isDark ? "dark" : "light"}-bg-semi`;
-  };
-
-  const conditionalButtonClass = () => {
-    return `
-      ${isDark ? "light" : "dark"}-color
-      ${isDark ? "light" : "dark"}-border
-    `;
-  };
+  useEffect(() => {
+    !play ? audio.current.pause() : audio.current.play();
+  }, [play]);
 
   const handlePlayClick = () => {
-    return alert("Masih dalam penegembangan");
+    if (audioSource === "") return alert("Pilih qori terlebih dahulu");
+
     setPlay(!play);
+
+    audio.current.onplay = () => setLoading(true);
+    audio.current.onplaying = () => setLoading(false);
+    audio.current.onended = () => setPlay(false);
   };
 
   const handleAyatChange = (e) => {
@@ -37,8 +38,20 @@ const HeaderSurat = ({ data, isDark }) => {
     e.target.selectedIndex = 0;
   };
 
-  const handleQoriChange = (e) => {
-    console.log("qori");
+  const handleQoriChange = ({ target }) => {
+    setPlay(false);
+    setAudioSource(target.value);
+  };
+
+  const conditionalSelectClass = () => {
+    return `${isDark ? "dark" : "light"}-bg-semi`;
+  };
+
+  const conditionalButtonClass = () => {
+    return `
+      ${isDark ? "light" : "dark"}-color
+      ${isDark ? "light" : "dark"}-border
+    `;
   };
 
   return (
@@ -81,7 +94,11 @@ const HeaderSurat = ({ data, isDark }) => {
           className={conditionalButtonClass()}
           to=""
         >
-          {play ? (
+          {loading ? (
+            <>
+              <span>Loading...</span>
+            </>
+          ) : play ? (
             <>
               <IconPauseFill />
               <span>Pause</span>
@@ -94,6 +111,11 @@ const HeaderSurat = ({ data, isDark }) => {
           )}
         </Link>
       </div>
+      <audio
+        ref={audio}
+        src={audioSource ? audioSource : null}
+        className="audio-full"
+      ></audio>
     </>
   );
 };
