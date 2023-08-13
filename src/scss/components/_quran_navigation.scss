@@ -5,7 +5,9 @@
   padding-bottom: 60px;
   position: relative;
   a {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     padding: 0.2rem 0.5rem;
     border-radius: 5px;

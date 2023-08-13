@@ -84,20 +84,6 @@ const IconSearch = (props) => {
   );
 };
 
-const IconBxsLeftArrowAlt = (props) => {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      width="1em"
-      height="1em"
-      {...props}
-    >
-      <path d="M5 12l7 6v-5h6v-2h-6V6z" />
-    </svg>
-  );
-};
-
 const IconPlayFill = (props) => {
   return (
     <svg
@@ -161,7 +147,6 @@ export {
   IconClock,
   IconMoon,
   IconSearch,
-  IconBxsLeftArrowAlt,
   IconPlayFill,
   IconPauseFill,
   IconClose,

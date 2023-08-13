@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import {
-  IconBxsLeftArrowAlt,
-  IconList,
-  IconPlayFill,
-  IconPauseFill,
-} from "./icons";
+import { IconList, IconPlayFill, IconPauseFill } from "./icons";
 
 const HeaderSurat = ({ data, isDark }) => {
   const { id } = useParams();
@@ -83,8 +78,7 @@ const HeaderSurat = ({ data, isDark }) => {
       </div>
       <div className="header-quran">
         <Link className={conditionalButtonClass()} to="/quran">
-          <IconBxsLeftArrowAlt />
-          <span>Daftar</span>
+          <span>⬅ Daftar</span>
         </Link>
         <Link className={conditionalButtonClass()} to={`/quran/tafsir/${id}`}>
           <IconList />

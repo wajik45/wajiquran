@@ -31,7 +31,7 @@ const AsmaulHusna = () => {
     <MainLayout
       setIsDark={setIsDark}
       isDark={isDark}
-      fixed={loading ? true : false}
+      fixed={loading || error ? true : false}
     >
       <HeaderMain
         title="Asma'ul Husna"

@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
 
-const QuranNavigation = ({ data, type }) => {
+const QuranNavigation = ({ data, type, isDark }) => {
+  const conditionalButtonClass = (type) => {
+    return `
+      ${isDark ? "light" : "dark"}-border
+      ${isDark ? "light" : "dark"}-color
+      ${type}
+    `;
+  };
+
   return (
     <div className="quran-navigation">
       {!data.suratSelanjutnya && (
         <Link
           to={`/quran/${type}/${data.suratSebelumnya.nomor}`}
-          className="left light-border light-color"
+          className={conditionalButtonClass("left")}
         >
           ⬅ {data.suratSebelumnya.namaLatin}
         </Link>
@@ -14,7 +22,7 @@ const QuranNavigation = ({ data, type }) => {
       {!data.suratSebelumnya && (
         <Link
           to={`/quran/${type}/${data.suratSelanjutnya.nomor}`}
-          className="right light-border light-color"
+          className={conditionalButtonClass("right")}
         >
           {data.suratSelanjutnya.namaLatin} ➡
         </Link>
@@ -23,13 +31,13 @@ const QuranNavigation = ({ data, type }) => {
         <>
           <Link
             to={`/quran/${type}/${data.suratSebelumnya.nomor}`}
-            className="left light-border light-color"
+            className={conditionalButtonClass("left")}
           >
             ⬅ {data.suratSebelumnya.namaLatin}
           </Link>
           <Link
             to={`/quran/${type}/${data.suratSelanjutnya.nomor}`}
-            className="right light-border light-color"
+            className={conditionalButtonClass("right")}
           >
             {data.suratSelanjutnya.namaLatin} ➡
           </Link>

@@ -7,15 +7,13 @@ const Bismillah = ({ isDark }) => {
     return `${isDark ? "light" : "dark"}-border-sm bismillah`;
   };
 
-  if (id.includes("1") || id.includes("9")) {
-    return "";
+  if (id !== "1" && id !== "9") {
+    return (
+      <div className={conditionalHeaderClass()}>
+        <h1 className="font-arab">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>
+      </div>
+    );
   }
-
-  return (
-    <div className={conditionalHeaderClass()}>
-      <h1 className="font-arab">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>
-    </div>
-  );
 };
 
 export default Bismillah;

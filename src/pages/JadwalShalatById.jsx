@@ -40,7 +40,7 @@ const JadwalShalatById = () => {
     <MainLayout
       setIsDark={setIsDark}
       isDark={isDark}
-      fixed={loading ? true : false}
+      fixed={loading || error ? true : false}
     >
       {loading ? (
         <Loader />

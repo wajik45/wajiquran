@@ -42,7 +42,7 @@ const QuranSurat = () => {
     <MainLayout
       setIsDark={setIsDark}
       isDark={isDark}
-      fixed={loading ? true : false}
+      fixed={loading || error ? true : false}
     >
       {loading ? (
         <Loader />
@@ -61,7 +61,7 @@ const QuranSurat = () => {
             <HeaderSurat data={data} isDark={isDark} />
             <Bismillah isDark={isDark} />
             <CardAyat data={data.ayat} isDark={isDark} />
-            <QuranNavigation data={data} type="surat" />
+            <QuranNavigation data={data} type="surat" isDark={isDark} />
           </>
         )
       )}

@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import { IconBxsLeftArrowAlt } from "./icons";
 
 const HeaderTafsir = ({ data, isDark }) => {
   const { id } = useParams();
@@ -28,8 +27,7 @@ const HeaderTafsir = ({ data, isDark }) => {
   return (
     <div className="header-quran">
       <Link className={conditionalButtonClass()} to={`/quran/surat/${id}`}>
-        <IconBxsLeftArrowAlt />
-        <span>Surat</span>
+        <span>⬅ Surat</span>
       </Link>
       <select onChange={handleAyatChange} className={conditionalSelectClass()}>
         <option value="">Pilih Ayat</option>
