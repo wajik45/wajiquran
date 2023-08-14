@@ -35,7 +35,7 @@
   }
   a {
     flex: 1;
-    padding: 0.5rem;
+    padding: 0.5rem 2rem;
     border-radius: 100px;
     width: 80px;
     display: flex;
@@ -50,5 +50,11 @@
 @media (max-width: 848px) {
   .header-quran {
     width: 100%;
+  }
+}
+
+@media (max-width: 578px) {
+  .header-quran {
+    gap: 1rem;
   }
 }
