@@ -1,5 +1,5 @@
 import { filtering } from "../utils";
-import ItemNotFound from "./ItemNotFound";
+import NotFoundItem from "./NotFoundItem";
 
 const CardAsmaulHusna = (props) => {
   const { data, search, isDark } = props;
@@ -30,7 +30,7 @@ const CardAsmaulHusna = (props) => {
       ))}
     </div>
   ) : (
-    <ItemNotFound type="Asma'ul Husna" />
+    <NotFoundItem type="Asma'ul Husna" />
   );
 };
 

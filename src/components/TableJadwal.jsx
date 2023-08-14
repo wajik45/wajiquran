@@ -1,4 +1,4 @@
-const JadwalTable = (props) => {
+const TableJadwal = (props) => {
   const { data, date, isDark } = props;
 
   const conditionalThTdClass = () => {
@@ -51,4 +51,4 @@ const JadwalTable = (props) => {
   );
 };
 
-export default JadwalTable;
+export default TableJadwal;

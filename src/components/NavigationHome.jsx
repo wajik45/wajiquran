@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const HomeNavigation = ({ isDark }) => {
+const NavigationHome = ({ isDark }) => {
   const conditionalButtonClass = () => {
     return `
       ${isDark ? "light" : "dark"}-border
@@ -31,4 +31,4 @@ const HomeNavigation = ({ isDark }) => {
   );
 };
 
-export default HomeNavigation;
+export default NavigationHome;

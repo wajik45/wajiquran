@@ -1,5 +1,5 @@
 import { MainLayout } from "../layouts/MainLayout";
-import { getSuratById } from "../services/getQuran.service";
+import { getSuratById } from "../services/getSuratById.service";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { setTheme } from "../utils";
@@ -20,7 +20,7 @@ const QuranSurat = () => {
     HeaderSurat,
     CardAyat,
     Bismillah,
-    QuranNavigation,
+    NavigationQuran,
   } = components;
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const QuranSurat = () => {
             <HeaderSurat data={data} isDark={isDark} />
             <Bismillah isDark={isDark} />
             <CardAyat data={data.ayat} isDark={isDark} />
-            <QuranNavigation data={data} type="surat" isDark={isDark} />
+            <NavigationQuran data={data} type="surat" isDark={isDark} />
           </>
         )
       )}

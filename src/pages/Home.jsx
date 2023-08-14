@@ -1,5 +1,5 @@
 import { MainLayout } from "../layouts/MainLayout";
-import { HeaderMain, HomeNavigation } from "../components";
+import { HeaderMain, NavigationHome } from "../components";
 import { useEffect, useState } from "react";
 import { setTheme } from "../utils";
 
@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <MainLayout setIsDark={setIsDark} isDark={isDark} fixed={true}>
       <HeaderMain title="WajiQuran" paragraph="Created with ♥ by Haikal" />
-      <HomeNavigation isDark={isDark} />
+      <NavigationHome isDark={isDark} />
     </MainLayout>
   );
 };

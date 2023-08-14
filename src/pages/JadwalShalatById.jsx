@@ -1,5 +1,5 @@
 import { MainLayout } from "../layouts/MainLayout";
-import { HeaderMain, JadwalTable, Loader, Error } from "../components";
+import { HeaderMain, TableJadwal, Loader, Error } from "../components";
 import { useState, useEffect } from "react";
 import { getJadwalShalat } from "../services/getJadwalShalat.service";
 import { getDayName, getMonthName } from "../utils";
@@ -56,7 +56,7 @@ const JadwalShalatById = () => {
                 data.daerah
               }, ${dayName} ${`0${date}`.slice(-2)} ${monthName} ${year}`}
             />
-            <JadwalTable data={data.jadwal} date={date} isDark={isDark} />
+            <TableJadwal data={data.jadwal} date={date} isDark={isDark} />
           </>
         )
       )}

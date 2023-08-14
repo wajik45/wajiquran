@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { IconLeft, IconRight } from "./icons";
 
-const QuranNavigation = ({ data, type, isDark }) => {
+const NavigationQuran = ({ data, type, isDark }) => {
   const conditionalButtonClass = (type) => {
     return `
       ${isDark ? "light" : "dark"}-border
@@ -52,4 +52,4 @@ const QuranNavigation = ({ data, type, isDark }) => {
   );
 };
 
-export default QuranNavigation;
+export default NavigationQuran;

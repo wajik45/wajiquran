@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { filtering } from "../utils";
-import ItemNotFound from "./ItemNotFound";
+import NotFoundItem from "./NotFoundItem";
 
 const CardKota = (props) => {
   const { data, search, isDark } = props;
@@ -28,7 +28,7 @@ const CardKota = (props) => {
       ))}
     </div>
   ) : (
-    <ItemNotFound type="Kota / Kabupaten" />
+    <NotFoundItem type="Kota / Kabupaten" />
   );
 };
 

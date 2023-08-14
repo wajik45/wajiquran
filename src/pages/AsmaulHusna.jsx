@@ -1,8 +1,11 @@
 import { MainLayout } from "../layouts/MainLayout";
-import { getAsmaulHusna } from "../services/getAsmaulHusna.service";
 import { useEffect, useState } from "react";
 import { setTheme } from "../utils";
 import * as components from "../components";
+import {
+  putCacheAsmaulHusna,
+  matchCacheAsmaulHusna,
+} from "../services/getAsmaulHusna.service";
 
 const AsmaulHusna = () => {
   const [loading, setLoading] = useState(false);
@@ -12,33 +15,36 @@ const AsmaulHusna = () => {
   const [search, setSearch] = useState("");
 
   const { HeaderMain, Search, CardAsmaulHusna, Loader, Error } = components;
-  const cachedData = localStorage.getItem("asmaul-husna");
 
   useEffect(() => {
     setTheme(setIsDark);
-
-    if (cachedData) return setData(JSON.parse(cachedData));
-
     (async () => {
       setLoading(true);
       try {
-        const result = await getAsmaulHusna();
+        let result;
+        let response;
+
+        if (await matchCacheAsmaulHusna()) {
+          response = await matchCacheAsmaulHusna();
+          result = await response.json();
+
+          setLoading(false);
+          return setData(result);
+        }
+
+        await putCacheAsmaulHusna();
+
+        response = await matchCacheAsmaulHusna();
+        result = await response.json();
+
         setLoading(false);
-        setData(result.data);
-
-        result.data.exp = Date.now() + 43200000;
-
-        localStorage.setItem("asmaul-husna", JSON.stringify(result.data));
+        setData(result);
       } catch (err) {
         setLoading(false);
         setError(err);
       }
     })();
   }, []);
-
-  if (data?.exp <= Date.now()) {
-    localStorage.removeItem("asmaul-husna");
-  }
 
   return (
     <MainLayout

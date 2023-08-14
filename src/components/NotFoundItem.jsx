@@ -1,4 +1,4 @@
-const ItemNotFound = ({ type }) => {
+const NotFoundItem = ({ type }) => {
   return (
     <div className="item-not-found-wrapper">
       <h3>{type} Tidak ditemukan</h3>
@@ -6,4 +6,4 @@ const ItemNotFound = ({ type }) => {
   );
 };
 
-export default ItemNotFound;
+export default NotFoundItem;

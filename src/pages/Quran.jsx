@@ -1,5 +1,8 @@
 import { MainLayout } from "../layouts/MainLayout";
-import { getSuratList } from "../services/getQuran.service";
+import {
+  putCacheSuratList,
+  matchCacheSuratList,
+} from "../services/getSuratList.service";
 import { useEffect, useState } from "react";
 import { setTheme } from "../utils";
 import * as components from "../components";
@@ -12,33 +15,36 @@ const Quran = () => {
   const [search, setSearch] = useState("");
 
   const { HeaderMain, Search, CardDaftarSurat, Loader, Error } = components;
-  const cachedData = localStorage.getItem("daftar-surat");
 
   useEffect(() => {
     setTheme(setIsDark);
-
-    if (cachedData) return setData(JSON.parse(cachedData));
-
     (async () => {
       setLoading(true);
       try {
-        const result = await getSuratList();
+        let result;
+        let response;
+
+        if (await matchCacheSuratList()) {
+          response = await matchCacheSuratList();
+          result = await response.json();
+
+          setLoading(false);
+          return setData(result);
+        }
+
+        await putCacheSuratList();
+
+        response = await matchCacheSuratList();
+        result = await response.json();
+
         setLoading(false);
-        setData(result.data);
-
-        result.data.exp = Date.now() + 43200000;
-
-        localStorage.setItem("daftar-surat", JSON.stringify(result.data));
+        setData(result);
       } catch (err) {
         setLoading(false);
         setError(err);
       }
     })();
   }, []);
-
-  if (data?.exp <= Date.now()) {
-    localStorage.removeItem("daftar-surat");
-  }
 
   return (
     <MainLayout

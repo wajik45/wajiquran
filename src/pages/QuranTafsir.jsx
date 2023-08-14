@@ -1,5 +1,5 @@
 import { MainLayout } from "../layouts/MainLayout";
-import { getTafsirById } from "../services/getQuran.service";
+import { getTafsirById } from "../services/getTafsirById.service";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { setTheme } from "../utils";
@@ -19,7 +19,7 @@ const QuranTafsir = () => {
     CardTafsir,
     Loader,
     Error,
-    QuranNavigation,
+    NavigationQuran,
   } = components;
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const QuranTafsir = () => {
             />
             <HeaderTafsir data={data} isDark={isDark} />
             <CardTafsir data={data.tafsir} isDark={isDark} />
-            <QuranNavigation data={data} type="tafsir" isDark={isDark} />
+            <NavigationQuran data={data} type="tafsir" isDark={isDark} />
           </>
         )
       )}

@@ -8,13 +8,13 @@ import CardAsmaulHusna from "./CardAsmaulHusna";
 import CardKota from "./CardKota";
 import CardAyat from "./CardAyat";
 import CardTafsir from "./CardTafsir";
-import JadwalTable from "./JadwalTable";
-import HomeNavigation from "./HomeNavigation";
+import TableJadwal from "./TableJadwal";
+import NavigationHome from "./NavigationHome";
+import NavigationQuran from "./NavigationQuran";
 import Loader from "./Loader";
 import Error from "./Error";
 import ToTop from "./ToTop";
 import Bismillah from "./Bismillah";
-import QuranNavigation from "./QuranNavigation";
 
 export {
   Navbar,
@@ -27,11 +27,11 @@ export {
   CardAsmaulHusna,
   CardAyat,
   CardTafsir,
-  JadwalTable,
-  HomeNavigation,
+  TableJadwal,
+  NavigationHome,
+  NavigationQuran,
   Loader,
   Error,
   ToTop,
   Bismillah,
-  QuranNavigation,
 };
