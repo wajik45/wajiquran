@@ -44,7 +44,7 @@ const JadwalShalatById = () => {
           year: year,
         });
 
-        title(`Jadwal Shalat | ${data.lokasi}`);
+        title(`Jadwal Shalat | ${result.data.lokasi}`);
 
         setLoading(false);
         setData(result.data);
