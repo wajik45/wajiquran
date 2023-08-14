@@ -14,9 +14,9 @@
       align-items: center;
       flex-direction: column;
       li {
-        &:hover span,
         &:hover svg {
-          color: #777;
+          border-radius: 5px;
+          box-shadow: 0 0 20px 0 $primary;
         }
         a {
           font-size: 0.8rem;

@@ -1,6 +1,6 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { useEffect, useState } from "react";
-import { setTheme } from "../utils";
+import { setTheme, online } from "../utils";
 import * as components from "../components";
 import {
   putCacheAsmaulHusna,
@@ -13,8 +13,11 @@ const AsmaulHusna = () => {
   const [error, setError] = useState(null);
   const [isDark, setIsDark] = useState(null);
   const [search, setSearch] = useState("");
+  const [refresh, setRefresh] = useState(0);
 
   const { HeaderMain, Search, CardAsmaulHusna, Loader, Error } = components;
+
+  online(setError, setRefresh);
 
   useEffect(() => {
     setTheme(setIsDark);
@@ -44,7 +47,7 @@ const AsmaulHusna = () => {
         setError(err);
       }
     })();
-  }, []);
+  }, [refresh]);
 
   return (
     <MainLayout

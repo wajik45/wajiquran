@@ -1,8 +1,11 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { HeaderMain, TableJadwal, Loader, Error } from "../components";
 import { useState, useEffect } from "react";
-import { getJadwalShalat } from "../services/getJadwalShalat.service";
-import { getDayName, getMonthName } from "../utils";
+import {
+  putCacheJadwalShalatById,
+  matchCacheJadwalShalatById,
+} from "../services/getJadwalShalatById.service";
+import { getDayName, getMonthName, online } from "../utils";
 import { useParams } from "react-router-dom";
 import { setTheme } from "../utils";
 
@@ -13,6 +16,7 @@ const JadwalShalatById = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isDark, setIsDark] = useState(null);
+  const [refresh, setRefresh] = useState(0);
 
   const day = new Date().getDay();
   const date = new Date().getDate();
@@ -22,20 +26,37 @@ const JadwalShalatById = () => {
   const dayName = getDayName(day);
   const monthName = getMonthName(month);
 
+  online(setError, setRefresh);
+
   useEffect(() => {
     setTheme(setIsDark);
     (async () => {
       setLoading(true);
       try {
-        const result = await getJadwalShalat({ id, year, month });
+        let response;
+        let result;
+
+        if (await matchCacheJadwalShalatById(id, year, month)) {
+          response = await matchCacheJadwalShalatById(id, year, month);
+          result = await response.json();
+
+          setLoading(false);
+          return setData(result.data);
+        }
+
+        await putCacheJadwalShalatById(id, year, month);
+
+        response = await matchCacheJadwalShalatById(id, year, month);
+        result = await response.json();
+
         setLoading(false);
-        setData(result.data.data);
+        setData(result.data);
       } catch (err) {
         setLoading(false);
         setError(err);
       }
     })();
-  }, []);
+  }, [refresh]);
 
   return (
     <MainLayout

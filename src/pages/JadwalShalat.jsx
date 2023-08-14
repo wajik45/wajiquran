@@ -1,7 +1,7 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { useState, useEffect } from "react";
 import { putCacheKota, matchCacheKota } from "../services/getKota.service";
-import { setTheme } from "../utils";
+import { setTheme, online } from "../utils";
 import * as components from "../components";
 
 const JadwalShalat = () => {
@@ -10,16 +10,19 @@ const JadwalShalat = () => {
   const [error, setError] = useState(null);
   const [isDark, setIsDark] = useState(null);
   const [search, setSearch] = useState("");
+  const [refresh, setRefresh] = useState(0);
 
   const { HeaderMain, Search, CardKota, Loader, Error } = components;
+
+  online(setError, setRefresh);
 
   useEffect(() => {
     setTheme(setIsDark);
     (async () => {
       setLoading(true);
       try {
-        let result;
         let response;
+        let result;
 
         if (await matchCacheKota()) {
           response = await matchCacheKota();
@@ -41,7 +44,7 @@ const JadwalShalat = () => {
         setError(err);
       }
     })();
-  }, []);
+  }, [refresh]);
 
   return (
     <MainLayout

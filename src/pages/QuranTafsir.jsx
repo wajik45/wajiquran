@@ -1,8 +1,11 @@
 import { MainLayout } from "../layouts/MainLayout";
-import { getTafsirById } from "../services/getTafsirById.service";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { setTheme } from "../utils";
+import { setTheme, online } from "../utils";
+import {
+  putCacheTafsirById,
+  matchCacheTafsirById,
+} from "../services/getTafsirById.service";
 import * as components from "../components";
 
 const QuranTafsir = () => {
@@ -12,6 +15,7 @@ const QuranTafsir = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isDark, setIsDark] = useState(null);
+  const [refresh, setRefresh] = useState(0);
 
   const {
     HeaderMain,
@@ -22,20 +26,37 @@ const QuranTafsir = () => {
     NavigationQuran,
   } = components;
 
+  online(setError, setRefresh);
+
   useEffect(() => {
     setTheme(setIsDark);
     (async () => {
       setLoading(true);
       try {
-        const result = await getTafsirById(id);
+        let response;
+        let result;
+
+        if (await matchCacheTafsirById(id)) {
+          response = await matchCacheTafsirById(id);
+          result = await response.json();
+
+          setLoading(false);
+          return setData(result.data);
+        }
+
+        await putCacheTafsirById(id);
+
+        response = await matchCacheTafsirById(id);
+        result = await response.json();
+
         setLoading(false);
-        setData(result.data.data);
+        setData(result.data);
       } catch (err) {
         setLoading(false);
         setError(err);
       }
     })();
-  }, [id]);
+  }, [id, refresh]);
 
   return (
     <MainLayout

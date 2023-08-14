@@ -4,7 +4,7 @@ import {
   matchCacheSuratList,
 } from "../services/getSuratList.service";
 import { useEffect, useState } from "react";
-import { setTheme } from "../utils";
+import { setTheme, online } from "../utils";
 import * as components from "../components";
 
 const Quran = () => {
@@ -13,16 +13,19 @@ const Quran = () => {
   const [error, setError] = useState(null);
   const [isDark, setIsDark] = useState(null);
   const [search, setSearch] = useState("");
+  const [refresh, setRefresh] = useState(0);
 
   const { HeaderMain, Search, CardDaftarSurat, Loader, Error } = components;
+
+  online(setError, setRefresh);
 
   useEffect(() => {
     setTheme(setIsDark);
     (async () => {
       setLoading(true);
       try {
-        let result;
         let response;
+        let result;
 
         if (await matchCacheSuratList()) {
           response = await matchCacheSuratList();
@@ -44,7 +47,7 @@ const Quran = () => {
         setError(err);
       }
     })();
-  }, []);
+  }, [refresh]);
 
   return (
     <MainLayout
