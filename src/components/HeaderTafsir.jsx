@@ -15,7 +15,7 @@ const HeaderTafsir = ({ data, isDark }) => {
     `;
   };
 
-  const handleAyatChange = (e) => {
+  const hadleAyat = (e) => {
     const element = document.getElementById(e.target.value);
     scrollTo({
       behavior: "smooth",
@@ -31,7 +31,7 @@ const HeaderTafsir = ({ data, isDark }) => {
         <IconLeft />
         <span>Surat</span>
       </Link>
-      <select onChange={handleAyatChange} className={conditionalSelectClass()}>
+      <select onChange={hadleAyat} className={conditionalSelectClass()}>
         <option value="">Pilih Ayat</option>
         {data.tafsir.map((item) => (
           <option key={item.ayat} value={item.ayat}>

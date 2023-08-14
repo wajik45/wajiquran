@@ -13,7 +13,7 @@ const HeaderSurat = ({ data, isDark }) => {
     !play ? audio.current.pause() : audio.current.play();
   }, [play]);
 
-  const handlePlayClick = () => {
+  const handlePlay = () => {
     if (audioSource === "") return alert("Pilih qori terlebih dahulu");
     if (loading === true) return;
 
@@ -24,7 +24,7 @@ const HeaderSurat = ({ data, isDark }) => {
     audio.current.onended = () => setPlay(false);
   };
 
-  const handleAyatChange = (e) => {
+  const handleAyat = (e) => {
     const element = document.getElementById(e.target.value);
     scrollTo({
       behavior: "smooth",
@@ -34,7 +34,12 @@ const HeaderSurat = ({ data, isDark }) => {
     e.target.selectedIndex = 0;
   };
 
-  const handleQoriChange = ({ target }) => {
+  const handleQori = ({ target }) => {
+    if (loading) {
+      audio.current.pause();
+      setLoading(false);
+    }
+
     setPlay(false);
     setAudioSource(target.value);
   };
@@ -53,10 +58,7 @@ const HeaderSurat = ({ data, isDark }) => {
   return (
     <>
       <div className="header-quran">
-        <select
-          onChange={handleAyatChange}
-          className={conditionalSelectClass()}
-        >
+        <select onChange={handleAyat} className={conditionalSelectClass()}>
           <option value="">Pilih Ayat</option>
           {data.ayat.map((item) => (
             <option key={item.nomorAyat} value={item.nomorAyat}>
@@ -64,14 +66,11 @@ const HeaderSurat = ({ data, isDark }) => {
             </option>
           ))}
         </select>
-        <select
-          onChange={handleQoriChange}
-          className={conditionalSelectClass()}
-        >
+        <select onChange={handleQori} className={conditionalSelectClass()}>
           <option value="">Pilih Qori</option>
           {Object.values(data.audioFull).map((item, index) => (
             <option key={index} value={item}>
-              {item.split("/")[4]}
+              {item.split("/")[4].replace(/-/g, " ")}
             </option>
           ))}
         </select>
@@ -85,11 +84,7 @@ const HeaderSurat = ({ data, isDark }) => {
           <IconList />
           <span>Tafsir</span>
         </Link>
-        <Link
-          onClick={handlePlayClick}
-          className={conditionalButtonClass()}
-          to=""
-        >
+        <Link onClick={handlePlay} className={conditionalButtonClass()} to="">
           {loading ? (
             <>
               <span>Loading...</span>

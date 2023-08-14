@@ -7,7 +7,7 @@ const Search = (props) => {
   const [isEmpty, setIsEmpty] = useState(true);
   const input = useRef(null);
 
-  const handleSearchChange = (e) => {
+  const handleSearch = (e) => {
     if (e.target.value === "") {
       setSearch(e.target.value);
       return setIsEmpty(true);
@@ -16,7 +16,7 @@ const Search = (props) => {
     return setIsEmpty(false);
   };
 
-  const handleCloseClick = () => {
+  const handleClose = () => {
     setIsEmpty(true);
     setSearch("");
     input.current.value = "";
@@ -28,7 +28,7 @@ const Search = (props) => {
       <form onSubmit={(e) => e.preventDefault()}>
         <div>
           <input
-            onChange={handleSearchChange}
+            onChange={handleSearch}
             className={`${isDark ? "light" : "dark"}-border`}
             ref={input}
             type="text"
@@ -37,7 +37,7 @@ const Search = (props) => {
           {isEmpty ? (
             <IconSearch className="icon" />
           ) : (
-            <IconClose onClick={handleCloseClick} className="icon" />
+            <IconClose onClick={handleClose} className="icon" />
           )}
         </div>
       </form>

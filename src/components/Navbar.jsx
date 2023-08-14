@@ -37,7 +37,7 @@ const Navbar = ({ isDark, setIsDark }) => {
     return `${isDark ? "light" : "dark"}-color`;
   };
 
-  const handleClick = () => {
+  const handleTheme = () => {
     if (sessionStorage.getItem("theme") === "dark") {
       setIsDark(false);
       return sessionStorage.setItem("theme", "light");
@@ -77,10 +77,10 @@ const Navbar = ({ isDark, setIsDark }) => {
             </li>
             <li>
               {isDark ? (
-                <IconMoon onClick={handleClick} className="icon" />
+                <IconMoon onClick={handleTheme} className="icon" />
               ) : (
                 <IconSunFill
-                  onClick={handleClick}
+                  onClick={handleTheme}
                   className="icon"
                   style={{ color: "orange" }}
                 />

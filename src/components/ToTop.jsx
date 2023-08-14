@@ -3,7 +3,7 @@ import { useState } from "react";
 const ToTop = ({ isDark }) => {
   const [show, setShow] = useState(false);
 
-  const handleClick = () => {
+  const handleToTop = () => {
     scrollTo({
       behavior: "smooth",
       left: 0,
@@ -19,7 +19,7 @@ const ToTop = ({ isDark }) => {
   };
 
   return (
-    <div onClick={handleClick} className={`to-top ${show ? "show" : ""}`}>
+    <div onClick={handleToTop} className={`to-top ${show ? "show" : ""}`}>
       <svg
         className={`${isDark ? "dark" : "light"}-bg`}
         viewBox="0 0 24 24"
