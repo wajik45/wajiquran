@@ -1,11 +1,12 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { setTheme, online } from "../utils";
+import { setTheme, online, title } from "../utils";
 import {
   putCacheSuratById,
   matchCacheSuratById,
 } from "../services/getSuratById.service";
+import { getDataByType } from "../services/getDataByType.service";
 import * as components from "../components";
 
 const QuranSurat = () => {
@@ -31,24 +32,18 @@ const QuranSurat = () => {
 
   useEffect(() => {
     setTheme(setIsDark);
+
     (async () => {
       setLoading(true);
+
       try {
-        let response;
-        let result;
+        const result = await getDataByType({
+          match: matchCacheSuratById,
+          put: putCacheSuratById,
+          id: id,
+        });
 
-        if (await matchCacheSuratById(id)) {
-          response = await matchCacheSuratById(id);
-          result = await response.json();
-
-          setLoading(false);
-          return setData(result.data);
-        }
-
-        await putCacheSuratById(id);
-
-        response = await matchCacheSuratById(id);
-        result = await response.json();
+        title(`Surat ${result.data.namaLatin}`);
 
         setLoading(false);
         setData(result.data);

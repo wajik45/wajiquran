@@ -3,8 +3,9 @@ import {
   putCacheSuratList,
   matchCacheSuratList,
 } from "../services/getSuratList.service";
+import { getDataByType } from "../services/getDataByType.service";
 import { useEffect, useState } from "react";
-import { setTheme, online } from "../utils";
+import { setTheme, online, title } from "../utils";
 import * as components from "../components";
 
 const Quran = () => {
@@ -21,24 +22,16 @@ const Quran = () => {
 
   useEffect(() => {
     setTheme(setIsDark);
+    title("Al-Qur'an");
+
     (async () => {
       setLoading(true);
+
       try {
-        let response;
-        let result;
-
-        if (await matchCacheSuratList()) {
-          response = await matchCacheSuratList();
-          result = await response.json();
-
-          setLoading(false);
-          return setData(result);
-        }
-
-        await putCacheSuratList();
-
-        response = await matchCacheSuratList();
-        result = await response.json();
+        const result = await getDataByType({
+          match: matchCacheSuratList,
+          put: putCacheSuratList,
+        });
 
         setLoading(false);
         setData(result);

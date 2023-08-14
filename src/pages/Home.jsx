@@ -1,13 +1,14 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { HeaderMain, NavigationHome } from "../components";
 import { useEffect, useState } from "react";
-import { setTheme } from "../utils";
+import { setTheme, title } from "../utils";
 
 const Home = () => {
   const [isDark, setIsDark] = useState(null);
 
   useEffect(() => {
     setTheme(setIsDark);
+    title("Home");
   }, []);
 
   return (

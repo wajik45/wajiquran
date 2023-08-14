@@ -1,6 +1,6 @@
 const BASEURL = import.meta.env.VITE_BASE_URL_JADWAL_SHALAT;
 
-export const putCacheJadwalShalatById = async (id, year, month) => {
+export const putCacheJadwalShalatById = async ({ id, year, month }) => {
   const response = await fetch(
     BASEURL + `/sholat/jadwal/${id}/${year}/${month + 1}`
   );
@@ -11,7 +11,7 @@ export const putCacheJadwalShalatById = async (id, year, month) => {
   );
 };
 
-export const matchCacheJadwalShalatById = async (id, year, month) => {
+export const matchCacheJadwalShalatById = async ({ id, year, month }) => {
   return await caches.match(
     BASEURL + `/sholat/jadwal/${id}/${year}/${month + 1}`
   );

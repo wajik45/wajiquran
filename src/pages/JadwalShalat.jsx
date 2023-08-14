@@ -1,7 +1,8 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { useState, useEffect } from "react";
 import { putCacheKota, matchCacheKota } from "../services/getKota.service";
-import { setTheme, online } from "../utils";
+import { getDataByType } from "../services/getDataByType.service";
+import { setTheme, online, title } from "../utils";
 import * as components from "../components";
 
 const JadwalShalat = () => {
@@ -18,24 +19,16 @@ const JadwalShalat = () => {
 
   useEffect(() => {
     setTheme(setIsDark);
+    title("Jadwal Shalat");
+
     (async () => {
       setLoading(true);
+
       try {
-        let response;
-        let result;
-
-        if (await matchCacheKota()) {
-          response = await matchCacheKota();
-          result = await response.json();
-
-          setLoading(false);
-          return setData(result);
-        }
-
-        await putCacheKota();
-
-        response = await matchCacheKota();
-        result = await response.json();
+        const result = await getDataByType({
+          match: matchCacheKota,
+          put: putCacheKota,
+        });
 
         setLoading(false);
         setData(result);

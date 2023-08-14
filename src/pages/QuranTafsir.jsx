@@ -1,11 +1,12 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { setTheme, online } from "../utils";
+import { setTheme, online, title } from "../utils";
 import {
   putCacheTafsirById,
   matchCacheTafsirById,
 } from "../services/getTafsirById.service";
+import { getDataByType } from "../services/getDataByType.service";
 import * as components from "../components";
 
 const QuranTafsir = () => {
@@ -30,24 +31,18 @@ const QuranTafsir = () => {
 
   useEffect(() => {
     setTheme(setIsDark);
+
     (async () => {
       setLoading(true);
+
       try {
-        let response;
-        let result;
+        const result = await getDataByType({
+          match: matchCacheTafsirById,
+          put: putCacheTafsirById,
+          id: id,
+        });
 
-        if (await matchCacheTafsirById(id)) {
-          response = await matchCacheTafsirById(id);
-          result = await response.json();
-
-          setLoading(false);
-          return setData(result.data);
-        }
-
-        await putCacheTafsirById(id);
-
-        response = await matchCacheTafsirById(id);
-        result = await response.json();
+        title(`Tafsir Surat ${result.data.namaLatin}`);
 
         setLoading(false);
         setData(result.data);

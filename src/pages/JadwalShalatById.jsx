@@ -5,9 +5,10 @@ import {
   putCacheJadwalShalatById,
   matchCacheJadwalShalatById,
 } from "../services/getJadwalShalatById.service";
-import { getDayName, getMonthName, online } from "../utils";
+import { getDayName, getMonthName, online, title } from "../utils";
 import { useParams } from "react-router-dom";
 import { setTheme } from "../utils";
+import { getDataByType } from "../services/getDataByType.service";
 
 const JadwalShalatById = () => {
   const { id } = useParams();
@@ -30,24 +31,20 @@ const JadwalShalatById = () => {
 
   useEffect(() => {
     setTheme(setIsDark);
+
     (async () => {
       setLoading(true);
+
       try {
-        let response;
-        let result;
+        const result = await getDataByType({
+          match: matchCacheJadwalShalatById,
+          put: putCacheJadwalShalatById,
+          id: id,
+          month: month,
+          year: year,
+        });
 
-        if (await matchCacheJadwalShalatById(id, year, month)) {
-          response = await matchCacheJadwalShalatById(id, year, month);
-          result = await response.json();
-
-          setLoading(false);
-          return setData(result.data);
-        }
-
-        await putCacheJadwalShalatById(id, year, month);
-
-        response = await matchCacheJadwalShalatById(id, year, month);
-        result = await response.json();
+        title(`Jadwal Shalat | ${data.lokasi}`);
 
         setLoading(false);
         setData(result.data);

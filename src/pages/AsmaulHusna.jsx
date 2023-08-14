@@ -1,11 +1,12 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { useEffect, useState } from "react";
-import { setTheme, online } from "../utils";
+import { setTheme, online, title } from "../utils";
 import * as components from "../components";
 import {
   putCacheAsmaulHusna,
   matchCacheAsmaulHusna,
 } from "../services/getAsmaulHusna.service";
+import { getDataByType } from "../services/getDataByType.service";
 
 const AsmaulHusna = () => {
   const [loading, setLoading] = useState(false);
@@ -21,24 +22,16 @@ const AsmaulHusna = () => {
 
   useEffect(() => {
     setTheme(setIsDark);
+    title("Asma'ul Husna");
+
     (async () => {
       setLoading(true);
+
       try {
-        let result;
-        let response;
-
-        if (await matchCacheAsmaulHusna()) {
-          response = await matchCacheAsmaulHusna();
-          result = await response.json();
-
-          setLoading(false);
-          return setData(result);
-        }
-
-        await putCacheAsmaulHusna();
-
-        response = await matchCacheAsmaulHusna();
-        result = await response.json();
+        const result = await getDataByType({
+          match: matchCacheAsmaulHusna,
+          put: putCacheAsmaulHusna,
+        });
 
         setLoading(false);
         setData(result);
