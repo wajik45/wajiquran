@@ -17,11 +17,10 @@ const Quran = () => {
 
   const { HeaderMain, Search, CardDaftarSurat, Loader, Error } = components;
 
-  online(setError, setRefresh);
-
   useEffect(() => {
     (async () => {
       title("Al-Qur'an");
+      online(setError, setRefresh);
       setLoading(true);
 
       try {

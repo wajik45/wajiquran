@@ -17,11 +17,10 @@ const AsmaulHusna = () => {
 
   const { HeaderMain, Search, CardAsmaulHusna, Loader, Error } = components;
 
-  online(setError, setRefresh);
-
   useEffect(() => {
     (async () => {
       title("Asma'ul Husna");
+      online(setError, setRefresh);
       setLoading(true);
 
       try {

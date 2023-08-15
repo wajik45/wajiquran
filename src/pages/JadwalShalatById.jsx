@@ -25,10 +25,9 @@ const JadwalShalatById = () => {
   const dayName = getDayName(day);
   const monthName = getMonthName(month);
 
-  online(setError, setRefresh);
-
   useEffect(() => {
     (async () => {
+      online(setError, setRefresh);
       setLoading(true);
 
       try {

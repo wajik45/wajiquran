@@ -14,11 +14,10 @@ const JadwalShalat = () => {
 
   const { HeaderMain, Search, CardKota, Loader, Error } = components;
 
-  online(setError, setRefresh);
-
   useEffect(() => {
     (async () => {
       title("Jadwal Shalat");
+      online(setError, setRefresh);
       setLoading(true);
 
       try {

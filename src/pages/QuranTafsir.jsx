@@ -26,10 +26,9 @@ const QuranTafsir = () => {
     NavigationQuran,
   } = components;
 
-  online(setError, setRefresh);
-
   useEffect(() => {
     (async () => {
+      online(setError, setRefresh);
       setLoading(true);
 
       try {
