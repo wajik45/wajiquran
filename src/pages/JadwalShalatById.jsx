@@ -7,7 +7,6 @@ import {
 } from "../services/getJadwalShalatById.service";
 import { getDayName, getMonthName, online, title } from "../utils";
 import { useParams } from "react-router-dom";
-import { setTheme } from "../utils";
 import { getDataByType } from "../services/getDataByType.service";
 
 const JadwalShalatById = () => {

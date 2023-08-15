@@ -1,6 +1,6 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { useEffect, useState } from "react";
-import { setTheme, online, title } from "../utils";
+import { online, title } from "../utils";
 import * as components from "../components";
 import {
   putCacheAsmaulHusna,

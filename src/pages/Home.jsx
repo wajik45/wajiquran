@@ -1,7 +1,7 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { HeaderMain, NavigationHome } from "../components";
 import { useEffect } from "react";
-import { title, setTheme } from "../utils";
+import { title } from "../utils";
 
 const Home = () => {
   useEffect(() => {

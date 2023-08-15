@@ -1,7 +1,7 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { setTheme, online, title } from "../utils";
+import { online, title } from "../utils";
 import {
   putCacheTafsirById,
   matchCacheTafsirById,

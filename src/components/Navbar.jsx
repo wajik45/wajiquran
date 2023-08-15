@@ -16,12 +16,12 @@ const Navbar = () => {
   const location = useLocation();
 
   const handleTheme = () => {
-    if (sessionStorage.getItem("theme") === "dark") {
+    if (localStorage.getItem("theme") === "dark") {
       setIsDarkMode(false);
-      return sessionStorage.setItem("theme", "light");
+      return localStorage.setItem("theme", "light");
     }
     setIsDarkMode(true);
-    return sessionStorage.setItem("theme", "dark");
+    return localStorage.setItem("theme", "dark");
   };
 
   const conditionalHomeClass = () => {

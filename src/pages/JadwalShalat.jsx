@@ -2,7 +2,7 @@ import { MainLayout } from "../layouts/MainLayout";
 import { useState, useEffect } from "react";
 import { putCacheKota, matchCacheKota } from "../services/getKota.service";
 import { getDataByType } from "../services/getDataByType.service";
-import { setTheme, online, title } from "../utils";
+import { online, title } from "../utils";
 import * as components from "../components";
 
 const JadwalShalat = () => {
