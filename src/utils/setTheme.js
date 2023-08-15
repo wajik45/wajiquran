@@ -1,7 +1,7 @@
-export default (setIsDark) => {
+export default (setIsDarkMode) => {
   if (sessionStorage.getItem("theme") === "light") {
-    return setIsDark(false);
+    return setIsDarkMode(false);
   }
   sessionStorage.setItem("theme", "dark");
-  return setIsDark(true);
+  return setIsDarkMode(true);
 };

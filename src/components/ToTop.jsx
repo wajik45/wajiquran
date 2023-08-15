@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DarkModeContext } from "../context/DarkMode";
 
-const ToTop = ({ isDark }) => {
+const ToTop = () => {
   const [show, setShow] = useState(false);
+  const { isDarkMode } = useContext(DarkModeContext);
 
   const handleToTop = () => {
     scrollTo({
@@ -21,7 +23,7 @@ const ToTop = ({ isDark }) => {
   return (
     <div onClick={handleToTop} className={`to-top ${show ? "show" : ""}`}>
       <svg
-        className={`${isDark ? "dark" : "light"}-bg`}
+        className={`${isDarkMode ? "dark" : "light"}-bg`}
         viewBox="0 0 24 24"
         fill="currentColor"
       >

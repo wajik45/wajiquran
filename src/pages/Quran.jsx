@@ -12,7 +12,6 @@ const Quran = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [isDark, setIsDark] = useState(null);
   const [search, setSearch] = useState("");
   const [refresh, setRefresh] = useState(0);
 
@@ -21,10 +20,8 @@ const Quran = () => {
   online(setError, setRefresh);
 
   useEffect(() => {
-    setTheme(setIsDark);
-    title("Al-Qur'an");
-
     (async () => {
+      title("Al-Qur'an");
       setLoading(true);
 
       try {
@@ -43,24 +40,18 @@ const Quran = () => {
   }, [refresh]);
 
   return (
-    <MainLayout
-      setIsDark={setIsDark}
-      isDark={isDark}
-      fixed={loading || error ? true : false}
-    >
+    <MainLayout fixed={loading || error ? true : false}>
       <HeaderMain
         title="Al-Qur'an Al-Kariim"
         paragraph="Baca Al-Qur'an Terjemah & Latin"
       />
-      <Search next="Surat / kata kunci" setSearch={setSearch} isDark={isDark} />
+      <Search next="Surat / kata kunci" setSearch={setSearch} />
       {loading ? (
         <Loader />
       ) : error ? (
         <Error error={error} />
       ) : (
-        data && (
-          <CardDaftarSurat data={data.data} search={search} isDark={isDark} />
-        )
+        data && <CardDaftarSurat data={data.data} search={search} />
       )}
     </MainLayout>
   );

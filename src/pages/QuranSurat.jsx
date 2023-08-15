@@ -15,7 +15,6 @@ const QuranSurat = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [isDark, setIsDark] = useState(null);
   const [refresh, setRefresh] = useState(0);
 
   const {
@@ -31,8 +30,6 @@ const QuranSurat = () => {
   online(setError, setRefresh);
 
   useEffect(() => {
-    setTheme(setIsDark);
-
     (async () => {
       setLoading(true);
 
@@ -55,11 +52,7 @@ const QuranSurat = () => {
   }, [id, refresh]);
 
   return (
-    <MainLayout
-      setIsDark={setIsDark}
-      isDark={isDark}
-      fixed={loading || error ? true : false}
-    >
+    <MainLayout fixed={loading || error ? true : false}>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -74,10 +67,10 @@ const QuranSurat = () => {
                 data.tempatTurun + " | " + data.arti + " | " + data.jumlahAyat
               } Ayat`}
             />
-            <HeaderSurat data={data} isDark={isDark} />
-            <Bismillah isDark={isDark} />
-            <CardAyat data={data.ayat} isDark={isDark} />
-            <NavigationQuran data={data} type="surat" isDark={isDark} />
+            <HeaderSurat data={data} />
+            <Bismillah />
+            <CardAyat data={data.ayat} />
+            <NavigationQuran data={data} type="surat" />
           </>
         )
       )}

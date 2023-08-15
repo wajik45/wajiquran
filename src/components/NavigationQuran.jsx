@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import { IconLeft, IconRight } from "./icons";
+import { useContext } from "react";
+import { DarkModeContext } from "../context/DarkMode";
 
-const NavigationQuran = ({ data, type, isDark }) => {
+const NavigationQuran = ({ data, type }) => {
+  const { isDarkMode } = useContext(DarkModeContext);
+
   const conditionalButtonClass = (type) => {
     return `
-      ${isDark ? "light" : "dark"}-border
-      ${isDark ? "light" : "dark"}-color
+      ${isDarkMode ? "light" : "dark"}-border
+      ${isDarkMode ? "light" : "dark"}-color
       ${type}
     `;
   };

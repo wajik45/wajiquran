@@ -1,12 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IconList, IconPlayFill, IconPauseFill, IconLeft } from "./icons";
+import { DarkModeContext } from "../context/DarkMode";
 
-const HeaderSurat = ({ data, isDark }) => {
+const HeaderSurat = ({ data }) => {
   const { id } = useParams();
+  const { isDarkMode } = useContext(DarkModeContext);
+
   const [play, setPlay] = useState(false);
   const [loading, setLoading] = useState(false);
   const [audioSource, setAudioSource] = useState("");
+
   const audio = useRef(null);
 
   useEffect(() => {
@@ -44,21 +48,17 @@ const HeaderSurat = ({ data, isDark }) => {
     setAudioSource(target.value);
   };
 
-  const conditionalSelectClass = () => {
-    return `${isDark ? "dark" : "light"}-bg-semi`;
-  };
+  const conditionalSelectClass = `${isDarkMode ? "dark" : "light"}-bg-semi`;
 
-  const conditionalButtonClass = () => {
-    return `
-      ${isDark ? "light" : "dark"}-color
-      ${isDark ? "light" : "dark"}-border
-    `;
-  };
+  const conditionalButtonClass = `
+    ${isDarkMode ? "light" : "dark"}-color
+    ${isDarkMode ? "light" : "dark"}-border
+  `;
 
   return (
     <>
       <div className="header-quran">
-        <select onChange={handleAyat} className={conditionalSelectClass()}>
+        <select onChange={handleAyat} className={conditionalSelectClass}>
           <option value="">Pilih Ayat</option>
           {data.ayat.map((item) => (
             <option key={item.nomorAyat} value={item.nomorAyat}>
@@ -66,7 +66,7 @@ const HeaderSurat = ({ data, isDark }) => {
             </option>
           ))}
         </select>
-        <select onChange={handleQori} className={conditionalSelectClass()}>
+        <select onChange={handleQori} className={conditionalSelectClass}>
           <option value="">Pilih Qori</option>
           {Object.values(data.audioFull).map((item, index) => (
             <option key={index} value={item}>
@@ -76,15 +76,15 @@ const HeaderSurat = ({ data, isDark }) => {
         </select>
       </div>
       <div className="header-quran">
-        <Link className={conditionalButtonClass()} to="/quran">
+        <Link className={conditionalButtonClass} to="/quran">
           <IconLeft />
           <span>Daftar</span>
         </Link>
-        <Link className={conditionalButtonClass()} to={`/quran/tafsir/${id}`}>
+        <Link className={conditionalButtonClass} to={`/quran/tafsir/${id}`}>
           <IconList />
           <span>Tafsir</span>
         </Link>
-        <Link onClick={handlePlay} className={conditionalButtonClass()} to="">
+        <Link onClick={handlePlay} className={conditionalButtonClass} to="">
           {loading ? (
             <>
               <span>Loading...</span>

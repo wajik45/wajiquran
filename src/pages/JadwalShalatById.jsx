@@ -16,7 +16,6 @@ const JadwalShalatById = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [isDark, setIsDark] = useState(null);
   const [refresh, setRefresh] = useState(0);
 
   const day = new Date().getDay();
@@ -30,8 +29,6 @@ const JadwalShalatById = () => {
   online(setError, setRefresh);
 
   useEffect(() => {
-    setTheme(setIsDark);
-
     (async () => {
       setLoading(true);
 
@@ -56,11 +53,7 @@ const JadwalShalatById = () => {
   }, [refresh]);
 
   return (
-    <MainLayout
-      setIsDark={setIsDark}
-      isDark={isDark}
-      fixed={loading || error ? true : false}
-    >
+    <MainLayout fixed={loading || error ? true : false}>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -74,7 +67,7 @@ const JadwalShalatById = () => {
                 data.daerah
               }, ${dayName} ${`0${date}`.slice(-2)} ${monthName} ${year}`}
             />
-            <TableJadwal data={data.jadwal} date={date} isDark={isDark} />
+            <TableJadwal data={data.jadwal} date={date} />
           </>
         )
       )}

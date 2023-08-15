@@ -1,20 +1,17 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { HeaderMain, NavigationHome } from "../components";
-import { useEffect, useState } from "react";
-import { setTheme, title } from "../utils";
+import { useEffect } from "react";
+import { title, setTheme } from "../utils";
 
 const Home = () => {
-  const [isDark, setIsDark] = useState(null);
-
   useEffect(() => {
-    setTheme(setIsDark);
     title("Home");
   }, []);
 
   return (
-    <MainLayout setIsDark={setIsDark} isDark={isDark} fixed={true}>
+    <MainLayout fixed={true}>
       <HeaderMain title="WajiQuran" paragraph="Created with ♥ by Haikal" />
-      <NavigationHome isDark={isDark} />
+      <NavigationHome />
     </MainLayout>
   );
 };

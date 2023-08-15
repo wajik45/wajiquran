@@ -1,19 +1,18 @@
 import { Link, useParams } from "react-router-dom";
 import { IconLeft } from "./icons";
+import { useContext } from "react";
+import { DarkModeContext } from "../context/DarkMode";
 
-const HeaderTafsir = ({ data, isDark }) => {
+const HeaderTafsir = ({ data }) => {
   const { id } = useParams();
+  const { isDarkMode } = useContext(DarkModeContext);
 
-  const conditionalSelectClass = () => {
-    return `${isDark ? "dark" : "light"}-bg-semi`;
-  };
+  const conditionalSelectClass = `${isDarkMode ? "dark" : "light"}-bg-semi`;
 
-  const conditionalButtonClass = () => {
-    return `
-      ${isDark ? "light" : "dark"}-color
-      ${isDark ? "light" : "dark"}-border
-    `;
-  };
+  const conditionalButtonClass = `
+    ${isDarkMode ? "light" : "dark"}-color
+    ${isDarkMode ? "light" : "dark"}-border
+  `;
 
   const hadleAyat = (e) => {
     const element = document.getElementById(e.target.value);
@@ -27,11 +26,11 @@ const HeaderTafsir = ({ data, isDark }) => {
 
   return (
     <div className="header-quran">
-      <Link className={conditionalButtonClass()} to={`/quran/surat/${id}`}>
+      <Link className={conditionalButtonClass} to={`/quran/surat/${id}`}>
         <IconLeft />
         <span>Surat</span>
       </Link>
-      <select onChange={hadleAyat} className={conditionalSelectClass()}>
+      <select onChange={hadleAyat} className={conditionalSelectClass}>
         <option value="">Pilih Ayat</option>
         {data.tafsir.map((item) => (
           <option key={item.ayat} value={item.ayat}>

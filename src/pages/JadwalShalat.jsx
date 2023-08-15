@@ -9,7 +9,6 @@ const JadwalShalat = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [isDark, setIsDark] = useState(null);
   const [search, setSearch] = useState("");
   const [refresh, setRefresh] = useState(0);
 
@@ -18,10 +17,8 @@ const JadwalShalat = () => {
   online(setError, setRefresh);
 
   useEffect(() => {
-    setTheme(setIsDark);
-    title("Jadwal Shalat");
-
     (async () => {
+      title("Jadwal Shalat");
       setLoading(true);
 
       try {
@@ -40,22 +37,18 @@ const JadwalShalat = () => {
   }, [refresh]);
 
   return (
-    <MainLayout
-      setIsDark={setIsDark}
-      isDark={isDark}
-      fixed={loading || error ? true : false}
-    >
+    <MainLayout fixed={loading || error ? true : false}>
       <HeaderMain
         title="Jadwal Shalat"
         paragraph="Jadwal Imsakiyah seluruh Kota di Indonesia"
       />
-      <Search next="Kota / Kabupaten" setSearch={setSearch} isDark={isDark} />
+      <Search next="Kota / Kabupaten" setSearch={setSearch} />
       {loading ? (
         <Loader />
       ) : error ? (
         <Error error={error} />
       ) : (
-        data && <CardKota data={data} search={search} isDark={isDark} />
+        data && <CardKota data={data} search={search} />
       )}
     </MainLayout>
   );

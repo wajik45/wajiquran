@@ -1,8 +1,10 @@
 import { IconSearch, IconClose } from "./icons";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
+import { DarkModeContext } from "../context/DarkMode";
 
 const Search = (props) => {
-  const { next, setSearch, isDark } = props;
+  const { next, setSearch } = props;
+  const { isDarkMode } = useContext(DarkModeContext);
 
   const [isEmpty, setIsEmpty] = useState(true);
   const input = useRef(null);
@@ -23,13 +25,17 @@ const Search = (props) => {
     input.current.focus();
   };
 
+  const conditionalInputClass = `
+    ${isDarkMode ? "light" : "dark"}-border
+  `;
+
   return (
     <div className="search">
       <form onSubmit={(e) => e.preventDefault()}>
         <div>
           <input
             onChange={handleSearch}
-            className={`${isDark ? "light" : "dark"}-border`}
+            className={conditionalInputClass}
             ref={input}
             type="text"
             placeholder={`Cari ${next} ...`}

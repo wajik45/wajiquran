@@ -15,7 +15,6 @@ const QuranTafsir = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [isDark, setIsDark] = useState(null);
   const [refresh, setRefresh] = useState(0);
 
   const {
@@ -30,8 +29,6 @@ const QuranTafsir = () => {
   online(setError, setRefresh);
 
   useEffect(() => {
-    setTheme(setIsDark);
-
     (async () => {
       setLoading(true);
 
@@ -54,11 +51,7 @@ const QuranTafsir = () => {
   }, [id, refresh]);
 
   return (
-    <MainLayout
-      setIsDark={setIsDark}
-      isDark={isDark}
-      fixed={loading || error ? true : false}
-    >
+    <MainLayout fixed={loading || error ? true : false}>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -73,9 +66,9 @@ const QuranTafsir = () => {
                 data.tempatTurun + " | " + data.arti + " | " + data.jumlahAyat
               } Ayat`}
             />
-            <HeaderTafsir data={data} isDark={isDark} />
-            <CardTafsir data={data.tafsir} isDark={isDark} />
-            <NavigationQuran data={data} type="tafsir" isDark={isDark} />
+            <HeaderTafsir data={data} />
+            <CardTafsir data={data.tafsir} />
+            <NavigationQuran data={data} type="tafsir" />
           </>
         )
       )}

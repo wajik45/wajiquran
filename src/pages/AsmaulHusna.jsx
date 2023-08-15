@@ -12,7 +12,6 @@ const AsmaulHusna = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [isDark, setIsDark] = useState(null);
   const [search, setSearch] = useState("");
   const [refresh, setRefresh] = useState(0);
 
@@ -21,10 +20,8 @@ const AsmaulHusna = () => {
   online(setError, setRefresh);
 
   useEffect(() => {
-    setTheme(setIsDark);
-    title("Asma'ul Husna");
-
     (async () => {
+      title("Asma'ul Husna");
       setLoading(true);
 
       try {
@@ -43,32 +40,18 @@ const AsmaulHusna = () => {
   }, [refresh]);
 
   return (
-    <MainLayout
-      setIsDark={setIsDark}
-      isDark={isDark}
-      fixed={loading || error ? true : false}
-    >
+    <MainLayout fixed={loading || error ? true : false}>
       <HeaderMain
         title="Asma'ul Husna"
         paragraph="Nama-nama Allah SWT yang baik"
       />
-      <Search
-        next="Asma'ul Husna / kata kunci"
-        setSearch={setSearch}
-        isDark={isDark}
-      />
+      <Search next="Asma'ul Husna / kata kunci" setSearch={setSearch} />
       {loading ? (
         <Loader />
       ) : error ? (
         <Error error={error} />
       ) : (
-        data && (
-          <CardAsmaulHusna
-            data={data.asmaulHusna}
-            search={search}
-            isDark={isDark}
-          />
-        )
+        data && <CardAsmaulHusna data={data.asmaulHusna} search={search} />
       )}
     </MainLayout>
   );

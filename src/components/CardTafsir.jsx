@@ -1,17 +1,22 @@
-const CardTafsir = ({ data, isDark }) => {
-  const conditionalCardClass = () => {
-    return `${isDark ? "light" : "dark"}-border-sm card-quran`;
-  };
+import { useContext } from "react";
+import { DarkModeContext } from "../context/DarkMode";
 
-  const conditionalCardHeaderClass = () => {
-    return `${isDark ? "dark" : "light"}-bg-semi card-quran-header`;
-  };
+const CardTafsir = ({ data }) => {
+  const { isDarkMode } = useContext(DarkModeContext);
+
+  const conditionalCardClass = `
+    ${isDarkMode ? "light" : "dark"}-border-sm card-quran
+  `;
+
+  const conditionalCardHeaderClass = `
+    ${isDarkMode ? "dark" : "light"}-bg-semi card-quran-header
+  `;
 
   return (
     <div className="card-quran-wrapper">
       {data.map((item) => (
-        <div id={item.ayat} key={item.ayat} className={conditionalCardClass()}>
-          <div className={conditionalCardHeaderClass()}>
+        <div id={item.ayat} key={item.ayat} className={conditionalCardClass}>
+          <div className={conditionalCardHeaderClass}>
             <h4>{item.ayat}.</h4>
           </div>
           <div className="card-quran-body">

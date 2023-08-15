@@ -8,9 +8,21 @@ import {
   IconMoon,
   IconSunFill,
 } from "./icons";
+import { useContext } from "react";
+import { DarkModeContext } from "../context/DarkMode";
 
-const Navbar = ({ isDark, setIsDark }) => {
+const Navbar = () => {
+  const { isDarkMode, setIsDarkMode } = useContext(DarkModeContext);
   const location = useLocation();
+
+  const handleTheme = () => {
+    if (sessionStorage.getItem("theme") === "dark") {
+      setIsDarkMode(false);
+      return sessionStorage.setItem("theme", "light");
+    }
+    setIsDarkMode(true);
+    return sessionStorage.setItem("theme", "dark");
+  };
 
   const conditionalHomeClass = () => {
     if (location.pathname === "/") {
@@ -26,57 +38,44 @@ const Navbar = ({ isDark, setIsDark }) => {
     return "icon";
   };
 
-  const conditionalNavbarClass = () => {
-    return `
-      ${isDark ? "light" : "dark"}-shadow
-      ${isDark ? "dark" : "light"}-bg
-    `;
-  };
+  const conditionalNavbarClass = `
+    ${isDarkMode ? "light" : "dark"}-shadow
+    ${isDarkMode ? "dark" : "light"}-bg
+  `;
 
-  const conditionalButtonClass = () => {
-    return `${isDark ? "light" : "dark"}-color`;
-  };
-
-  const handleTheme = () => {
-    if (sessionStorage.getItem("theme") === "dark") {
-      setIsDark(false);
-      return sessionStorage.setItem("theme", "light");
-    }
-    setIsDark(true);
-    return sessionStorage.setItem("theme", "dark");
-  };
+  const conditionalButtonClass = `${isDarkMode ? "light" : "dark"}-color`;
 
   return (
-    <div id="navbar" className={conditionalNavbarClass()}>
+    <div id="navbar" className={conditionalNavbarClass}>
       <Container>
         <nav>
           <ul>
             <li>
-              <Link to="/" className={conditionalButtonClass()}>
+              <Link to="/" className={conditionalButtonClass}>
                 <IconHome className={conditionalHomeClass()} />
                 <span>Home</span>
               </Link>
             </li>
             <li>
-              <Link to="/quran" className={conditionalButtonClass()}>
+              <Link to="/quran" className={conditionalButtonClass}>
                 <IconBookQuran className={conditionalIconClass("quran")} />
                 <span>Al-Quran</span>
               </Link>
             </li>
             <li>
-              <Link to="/asmaul-husna" className={conditionalButtonClass()}>
+              <Link to="/asmaul-husna" className={conditionalButtonClass}>
                 <IconList className={conditionalIconClass("asmaul-husna")} />
                 <span>Asma'ul Husna</span>
               </Link>
             </li>
             <li>
-              <Link to="/jadwal-shalat" className={conditionalButtonClass()}>
+              <Link to="/jadwal-shalat" className={conditionalButtonClass}>
                 <IconClock className={conditionalIconClass("jadwal-shalat")} />
                 <span>Jadwal Shalat</span>
               </Link>
             </li>
             <li>
-              {isDark ? (
+              {isDarkMode ? (
                 <IconMoon onClick={handleTheme} className="icon" />
               ) : (
                 <IconSunFill

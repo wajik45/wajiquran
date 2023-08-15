@@ -11,6 +11,7 @@ import {
   QuranTafsir,
 } from "./pages";
 import "./index.scss";
+import { DarkModeProvider } from "./context/DarkMode";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <DarkModeProvider>
+      <RouterProvider router={router} />
+    </DarkModeProvider>
   </React.StrictMode>
 );

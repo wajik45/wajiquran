@@ -1,9 +1,10 @@
-const TableJadwal = (props) => {
-  const { data, date, isDark } = props;
+import { useContext } from "react";
+import { DarkModeContext } from "../context/DarkMode";
 
-  const conditionalThTdClass = () => {
-    return `${isDark ? "light" : "dark"}-border-sm`;
-  };
+const TableJadwal = ({ data, date }) => {
+  const { isDarkMode } = useContext(DarkModeContext);
+
+  const conditionalThTdClass = `${isDarkMode ? "light" : "dark"}-border-sm`;
 
   const conditionalTrClass = (item) => {
     const tanggal = item.tanggal;
@@ -12,8 +13,8 @@ const TableJadwal = (props) => {
     return tanggal.slice(length - 10).split("/")[0] == `0${date}`.slice(-2)
       ? "now"
       : `
-        ${isDark ? "dark" : "light"}-col
-        ${isDark ? "light" : "dark"}-border-sm
+        ${isDarkMode ? "dark" : "light"}-col
+        ${isDarkMode ? "light" : "dark"}-border-sm
       `;
   };
 
@@ -22,27 +23,27 @@ const TableJadwal = (props) => {
       <div className="jadwal-wrapper">
         <table>
           <tr>
-            <th className={conditionalThTdClass()}>Tanggal</th>
-            <th className={conditionalThTdClass()}>Imsak</th>
-            <th className={conditionalThTdClass()}>Subuh</th>
-            <th className={conditionalThTdClass()}>Terbit</th>
-            <th className={conditionalThTdClass()}>Dhuha</th>
-            <th className={conditionalThTdClass()}>Dzuhur</th>
-            <th className={conditionalThTdClass()}>Ashar</th>
-            <th className={conditionalThTdClass()}>Maghrib</th>
-            <th className={conditionalThTdClass()}>Isya</th>
+            <th className={conditionalThTdClass}>Tanggal</th>
+            <th className={conditionalThTdClass}>Imsak</th>
+            <th className={conditionalThTdClass}>Subuh</th>
+            <th className={conditionalThTdClass}>Terbit</th>
+            <th className={conditionalThTdClass}>Dhuha</th>
+            <th className={conditionalThTdClass}>Dzuhur</th>
+            <th className={conditionalThTdClass}>Ashar</th>
+            <th className={conditionalThTdClass}>Maghrib</th>
+            <th className={conditionalThTdClass}>Isya</th>
           </tr>
           {data.map((item) => (
             <tr key={item.tanggal} className={conditionalTrClass(item)}>
-              <td className={conditionalThTdClass()}>{item.tanggal}</td>
-              <td className={conditionalThTdClass()}>{item.imsak}</td>
-              <td className={conditionalThTdClass()}>{item.subuh}</td>
-              <td className={conditionalThTdClass()}>{item.terbit}</td>
-              <td className={conditionalThTdClass()}>{item.dhuha}</td>
-              <td className={conditionalThTdClass()}>{item.dzuhur}</td>
-              <td className={conditionalThTdClass()}>{item.ashar}</td>
-              <td className={conditionalThTdClass()}>{item.maghrib}</td>
-              <td className={conditionalThTdClass()}>{item.isya}</td>
+              <td className={conditionalThTdClass}>{item.tanggal}</td>
+              <td className={conditionalThTdClass}>{item.imsak}</td>
+              <td className={conditionalThTdClass}>{item.subuh}</td>
+              <td className={conditionalThTdClass}>{item.terbit}</td>
+              <td className={conditionalThTdClass}>{item.dhuha}</td>
+              <td className={conditionalThTdClass}>{item.dzuhur}</td>
+              <td className={conditionalThTdClass}>{item.ashar}</td>
+              <td className={conditionalThTdClass}>{item.maghrib}</td>
+              <td className={conditionalThTdClass}>{item.isya}</td>
             </tr>
           ))}
         </table>
