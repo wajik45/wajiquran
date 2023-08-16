@@ -1,8 +1,8 @@
-# React + Vite
+# WAJIQURAN
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+baca Al-Qur'an lengkap disertai terjemah dan latin
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### API
+- Al-Quran : https://equran.id/apidev
+- Jadwal Shalat : https://api.banghasan.com
+- Asmaul Husna : https://github.com/wajik45/asmaul-husna-api
