@@ -10,7 +10,7 @@ const Home = () => {
 
   return (
     <MainLayout fixed={true}>
-      <HeaderMain title="WajiQuran" paragraph="Created with ♥ by Haikal" />
+      <HeaderMain title="WajiQuran" paragraph="Platform Al-Quran digital terlengkap dengan terjemahan bahasa Indonesia, audio berkualitas tinggi dari 6 qari terbaik" />
       <NavigationHome />
     </MainLayout>
   );
