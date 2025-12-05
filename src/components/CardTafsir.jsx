@@ -20,7 +20,7 @@ const CardTafsir = ({ data }) => {
             <h4>{item.ayat}.</h4>
           </div>
           <div className="card-quran-body">
-            <p className="text-justify lh-md">{item.teks}</p>
+            <p className="lh-md">{item.teks}</p>
           </div>
         </div>
       ))}
